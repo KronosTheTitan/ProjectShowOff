@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace Gameplay
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IDamageable
     {
         [Header("Health")]
         [SerializeField] private int maxHealth = 100;
@@ -129,7 +129,8 @@ namespace Gameplay
         
             _lastShot = Time.time;
             shotEffect.Play();
-            Instantiate(bulletPrefab,bulletSpawn.position,bulletSpawn.rotation);
+            Bullet bullet = Instantiate(bulletPrefab,bulletSpawn.position,bulletSpawn.rotation);
+            bullet.SetSource(this);
         }
 
         /// <summary>
@@ -141,7 +142,7 @@ namespace Gameplay
             _gamepad = gamepad;
         }
 
-        public void TakeDamage(int damage , Vector2 direction)
+        public void TakeDamage(int damage , Vector3 direction, Player source)
         {
             health -= damage;
             onTakeDamage.Invoke();

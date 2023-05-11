@@ -144,20 +144,8 @@ namespace Gameplay
 
         public void TakeDamage(int damage , Vector3 direction, Player source)
         {
-            health -= damage;
             onTakeDamage.Invoke();
-
-            if (health <= 0)
-            {
-                Debug.Log(health);
-                onDeath.Invoke();
-                gameObject.SetActive(false);
-                Invoke("Respawn",respawnDelay);
-            }
-            else
-            {
-                StartCoroutine(Knockback(direction));
-            }
+            StartCoroutine(Knockback(direction));
         }
 
         public void Respawn()

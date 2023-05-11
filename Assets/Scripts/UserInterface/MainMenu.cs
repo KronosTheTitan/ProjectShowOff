@@ -12,7 +12,11 @@ namespace UserInterface
     /// </summary>
     public class MainMenu : MonoBehaviour, Menu
     {
-        [SerializeField] private enum MenuOptions
+        /// <summary>
+        /// These are used to keep a list of all the options a user might select in the
+        /// main menu.
+        /// </summary>
+        private enum MenuOptions
         {
             START,
             QUIT

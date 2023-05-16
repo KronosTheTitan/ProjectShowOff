@@ -35,7 +35,7 @@ namespace Gameplay
             IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(20, rigidbody.velocity, source);
+                damageable.TakeDamage(rigidbody.velocity, source);
                 Destroy(gameObject);
                 return;
             }

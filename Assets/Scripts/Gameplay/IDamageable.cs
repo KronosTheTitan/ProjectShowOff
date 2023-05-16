@@ -4,6 +4,12 @@ namespace Gameplay
 {
     public interface IDamageable
     {
-        public void TakeDamage(int amount, Vector3 direction, Player source);
+        /// <summary>
+        /// applies knock-back to the player
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="direction"></param>
+        /// <param name="source"></param>
+        public void TakeDamage(Vector3 direction, Player source);
     }
 }

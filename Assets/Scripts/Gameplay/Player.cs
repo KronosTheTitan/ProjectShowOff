@@ -111,12 +111,10 @@ namespace Gameplay
         /// <param name="rotation"></param>
         private void MovePlayer(Vector2 direction, Vector2 rotation)
         {
+            transform.LookAt(transform.position + new Vector3(direction.x,0,direction.y));
             direction *= speed;
-            rigidbody.velocity = Vector3.ClampMagnitude(new Vector3(direction.x, 0, direction.y), maxSpeed);
-            animator.SetFloat("Speed",rigidbody.velocity.magnitude);
-        
-            if(rotation.magnitude <= 0.95f) return;
-            transform.LookAt(transform.position + new Vector3(rotation.x,0,rotation.y));
+            rigidbody.velocity = Vector3.ClampMagnitude((transform.forward * direction.y)+(transform.right * direction.x), maxSpeed);
+            //animator.SetFloat("Speed",rigidbody.velocity.magnitude);
         }
 
         /// <summary>

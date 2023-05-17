@@ -173,9 +173,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 12
+    m_Bits: 8
   jumpForce: 1000
   cameraTarget: {fileID: 423746437}
+  useDpad: 1
   rateOfFire: 0.1
   bulletPrefab: {fileID: 0}
   bulletSpawn: {fileID: 0}

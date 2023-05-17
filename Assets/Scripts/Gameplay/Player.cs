@@ -33,8 +33,11 @@ namespace Gameplay
         [SerializeField] private float jumpForce;
 
         [SerializeField] private Transform cameraTarget;
+        [SerializeField] private float cameraSmoothing = 1.5f;
 
         private bool _inKnockback = false;
+
+        [SerializeField] private bool useDpad = true;
     
         [Header("Shooting")]
         [SerializeField] private float rateOfFire = .1f;
@@ -61,9 +64,17 @@ namespace Gameplay
                 return;
             if(_gamepad == null) 
                 return;
-            
-            Vector2 direction = _gamepad.dPad.position; 
-            MovePlayer(direction.normalized);
+
+            if (useDpad)
+            {
+                Vector2 direction = _gamepad.dPad.position; 
+                MovePlayer(direction.normalized);
+            }
+            else
+            {
+                Vector2 direction = _gamepad.leftStick.position; 
+                MovePlayer(direction.normalized);
+            }
             
             if(!IsGrounded())
                 return;
@@ -135,13 +146,9 @@ namespace Gameplay
         /// <param name="direction"></param>
         private void MovePlayer(Vector2 direction)
         {
-            //transform.LookAt(transform.position + new Vector3(direction.x,0,direction.y));
             transform.rotation = transform.rotation * Quaternion.AngleAxis((direction.x * 90) * Time.deltaTime, transform.up);
             direction *= speed;
-            //rigidbody.velocity = Vector3.ClampMagnitude((transform.forward * direction.y)+(transform.right * direction.x), maxSpeed);
-            //rigidbody.velocity = Vector3.ClampMagnitude((cameraTarget.forward * direction.y)+(cameraTarget.right * direction.x), maxSpeed);
             rigidbody.velocity = Vector3.ClampMagnitude((cameraTarget.forward * direction.y) + rigidbody.velocity, maxSpeed);
-            //rigidbody.velocity = Vector3.ClampMagnitude(new Vector3(direction.x, 0, direction.y), maxSpeed);
         }
 
         /// <summary>
@@ -149,8 +156,8 @@ namespace Gameplay
         /// </summary>
         private void LateUpdate()
         {
-            cameraTarget.position = Vector3.Slerp(cameraTarget.position, transform.position, Time.deltaTime);
-            cameraTarget.rotation = Quaternion.Slerp(cameraTarget.rotation, transform.rotation, Time.deltaTime);
+            cameraTarget.position = Vector3.Slerp(cameraTarget.position, transform.position, Time.deltaTime * cameraSmoothing);
+            cameraTarget.rotation = Quaternion.Slerp(cameraTarget.rotation, transform.rotation, Time.deltaTime * cameraSmoothing);
         }
 
         /// <summary>

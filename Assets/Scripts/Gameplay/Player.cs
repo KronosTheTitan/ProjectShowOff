@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Managers;
 using Packages.Hinput.Scripts.Gamepad;
@@ -28,8 +29,15 @@ namespace Gameplay
         [SerializeField] private float knockbackStrength = 1.5f;
         [SerializeField] private float knockbackDuration = .5f;
         [SerializeField] private Animator animator;
+        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private float jumpForce;
+
+        [SerializeField] private Transform cameraTarget;
+        [SerializeField] private float cameraSmoothing = 1.5f;
 
         private bool _inKnockback = false;
+
+        [SerializeField] private bool useDpad = true;
     
         [Header("Shooting")]
         [SerializeField] private float rateOfFire = .1f;
@@ -48,22 +56,50 @@ namespace Gameplay
         public UnityEvent onScoreIncrease;
         public UnityEvent onTakeDamage;
         public UnityEvent onDeath;
+
     
         public void Update()
         {
-            if (!_inKnockback)
+            if (_inKnockback)
+                return;
+            if(_gamepad == null) 
+                return;
+
+            if (useDpad)
             {
-                if(_gamepad == null) return;
-                Vector2 direction = _gamepad.leftStick.position;
-                Vector2 rotation = _gamepad.rightStick.position;
-                MovePlayer(direction.normalized, rotation.normalized);
-            
-                if (_gamepad.rightTrigger.pressed || Input.GetKeyDown(KeyCode.Space))
-                {
-                    Shoot();
-                }
+                Vector2 direction = _gamepad.dPad.position; 
+                MovePlayer(direction.normalized);
             }
+            else
+            {
+                Vector2 direction = _gamepad.leftStick.position; 
+                MovePlayer(direction.normalized);
+            }
+            
+            if(!IsGrounded())
+                return;
+            
+            if (_gamepad.A.justPressed) 
+                rigidbody.AddForce(Vector3.up * jumpForce);
+            
+            if (_gamepad.rightTrigger.pressed || Input.GetKeyDown(KeyCode.Space))
+                Shoot();
         }
+        bool IsGrounded() {
+                 Vector3 position = transform.position;
+                 Vector3 direction = Vector2.down;
+                 float distance = 1f;
+             
+                 Debug.DrawRay(position, direction, Color.green);
+                 RaycastHit hit;
+                 Physics.Raycast(position, direction, out hit, distance, groundLayer);
+                 
+                 if (hit.collider != null) {
+                     return true;
+                 }
+             
+                 return false;
+             }
 
         public void ReceiveScore(int amount)
         {
@@ -108,15 +144,20 @@ namespace Gameplay
         /// rotation.
         /// </summary>
         /// <param name="direction"></param>
-        /// <param name="rotation"></param>
-        private void MovePlayer(Vector2 direction, Vector2 rotation)
+        private void MovePlayer(Vector2 direction)
         {
+            transform.rotation = transform.rotation * Quaternion.AngleAxis((direction.x * 90) * Time.deltaTime, transform.up);
             direction *= speed;
-            rigidbody.velocity = Vector3.ClampMagnitude(new Vector3(direction.x, 0, direction.y), maxSpeed);
-            animator.SetFloat("Speed",rigidbody.velocity.magnitude);
-        
-            if(rotation.magnitude <= 0.95f) return;
-            transform.LookAt(transform.position + new Vector3(rotation.x,0,rotation.y));
+            rigidbody.velocity = Vector3.ClampMagnitude((cameraTarget.forward * direction.y) + rigidbody.velocity, maxSpeed);
+        }
+
+        /// <summary>
+        /// this is important to be in late update to avoid jitter for the camera.
+        /// </summary>
+        private void LateUpdate()
+        {
+            cameraTarget.position = Vector3.Slerp(cameraTarget.position, transform.position, Time.deltaTime * cameraSmoothing);
+            cameraTarget.rotation = Quaternion.Slerp(cameraTarget.rotation, transform.rotation, Time.deltaTime * cameraSmoothing);
         }
 
         /// <summary>
@@ -141,25 +182,16 @@ namespace Gameplay
         {
             _gamepad = gamepad;
         }
-
-        public void TakeDamage(int damage , Vector3 direction, Player source)
+        
+        public void TakeDamage(Vector3 direction, Player source)
         {
-            health -= damage;
             onTakeDamage.Invoke();
-
-            if (health <= 0)
-            {
-                Debug.Log(health);
-                onDeath.Invoke();
-                gameObject.SetActive(false);
-                Invoke("Respawn",respawnDelay);
-            }
-            else
-            {
-                StartCoroutine(Knockback(direction));
-            }
+            StartCoroutine(Knockback(direction));
         }
 
+        /// <summary>
+        /// Respawns the player at its spawn point.
+        /// </summary>
         public void Respawn()
         {
             health = maxHealth;

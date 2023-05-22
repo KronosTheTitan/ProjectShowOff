@@ -149,7 +149,7 @@ namespace Gameplay
         {
             transform.rotation = transform.rotation * Quaternion.AngleAxis((direction.x * 90) * Time.deltaTime, transform.up);
             direction *= speed;
-            rigidbody.velocity = Vector3.ClampMagnitude((cameraTarget.forward * direction.y) + rigidbody.velocity, maxSpeed);
+            rigidbody.velocity = Vector3.ClampMagnitude((transform.forward * direction.y) + rigidbody.velocity, maxSpeed);
         }
 
         /// <summary>

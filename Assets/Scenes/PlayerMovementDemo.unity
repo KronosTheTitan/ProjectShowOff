@@ -397,6 +397,24 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &77994603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77994595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a1da950c96bc84f8ab5113dc02b053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 77994596}
+  tongueRange: 15
+  horizontalInterval: 15
+  verticalInterval: 15
+  vocalSackRange: 1
+  kickRange: 5
 --- !u!1 &138996489
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1017516998
 MonoBehaviour:
   m_ObjectHideFlags: 0

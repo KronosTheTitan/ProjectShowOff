@@ -4,6 +4,7 @@ using Managers;
 using Packages.Hinput.Scripts.Gamepad;
 using UnityEngine;
 using UnityEngine.Events;
+using XInputDotNetPure;
 
 namespace Gameplay
 {
@@ -181,6 +182,11 @@ namespace Gameplay
         public void SetGamepad(Gamepad gamepad)
         {
             _gamepad = gamepad;
+        }
+
+        public Gamepad GetGamepad()
+        {
+            return _gamepad;
         }
         
         public void TakeDamage(Vector3 direction, Player source)

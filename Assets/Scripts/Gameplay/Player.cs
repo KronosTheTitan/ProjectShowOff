@@ -4,6 +4,7 @@ using Managers;
 using Packages.Hinput.Scripts.Gamepad;
 using UnityEngine;
 using UnityEngine.Events;
+using XInputDotNetPure;
 
 namespace Gameplay
 {
@@ -148,7 +149,7 @@ namespace Gameplay
         {
             transform.rotation = transform.rotation * Quaternion.AngleAxis((direction.x * 90) * Time.deltaTime, transform.up);
             direction *= speed;
-            rigidbody.velocity = Vector3.ClampMagnitude((cameraTarget.forward * direction.y) + rigidbody.velocity, maxSpeed);
+            rigidbody.velocity = Vector3.ClampMagnitude((transform.forward * direction.y) + rigidbody.velocity, maxSpeed);
         }
 
         /// <summary>
@@ -181,6 +182,11 @@ namespace Gameplay
         public void SetGamepad(Gamepad gamepad)
         {
             _gamepad = gamepad;
+        }
+
+        public Gamepad GetGamepad()
+        {
+            return _gamepad;
         }
         
         public void TakeDamage(Vector3 direction, Player source)

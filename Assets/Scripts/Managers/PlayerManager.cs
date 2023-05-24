@@ -7,6 +7,7 @@ namespace Managers
 {
     public class PlayerManager : MonoBehaviour
     {
+        #region Singleton
         private static PlayerManager _instance;
 
         private void Awake()
@@ -21,15 +22,13 @@ namespace Managers
         {
             return _instance;
         }
+        #endregion
 
         [SerializeField] private Player[] players;
+        [SerializeField] private SplitScreenManager splitScreenManager;
         void Start()
         {
-            for (int i = 0; i < players.Length; i++)
-            {
-                if(Hinput.gamepad[i] == null) continue;
-                players[i].SetGamepad(Hinput.gamepad[i]);
-            }
+            
         }
 
         public void HandleVictory(Player winner)

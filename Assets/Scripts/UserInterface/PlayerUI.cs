@@ -1,29 +1,24 @@
-using Gameplay;
+using System;
+using Gameplay.Player;
+using Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UserInterface
 {
     public class PlayerUI : MonoBehaviour
     {
         [SerializeField] private Player player;
-        [SerializeField] private Slider healthBar;
         [SerializeField] private TMP_Text score;
-    
-        /// <summary>
-        /// This function updates the players health bar.
-        /// It should be called as part of an event when the player
-        /// takes damage.
-        /// </summary>
-        public void UpdateHealth()
+
+        private void Start()
         {
-            healthBar.value = player.health;
+            player.OnScoreIncrease += UpdateScore;
         }
 
         public void UpdateScore()
         {
-            score.text = player.score.ToString();
+            score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();
         }
     }
 }

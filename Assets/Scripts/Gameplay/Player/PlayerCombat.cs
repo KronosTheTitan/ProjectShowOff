@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Player
 {
     [RequireComponent(typeof(Player))]
     public class PlayerCombat : MonoBehaviour

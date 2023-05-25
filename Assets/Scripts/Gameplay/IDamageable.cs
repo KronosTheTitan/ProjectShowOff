@@ -10,6 +10,6 @@ namespace Gameplay
         /// <param name="amount"></param>
         /// <param name="direction"></param>
         /// <param name="source"></param>
-        public void TakeDamage(Vector3 direction, Player source, float strength, float duration);
+        public void TakeDamage(Vector3 direction, Player.Player source, float strength, float duration);
     }
 }

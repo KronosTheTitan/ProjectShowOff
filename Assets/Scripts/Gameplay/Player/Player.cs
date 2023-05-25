@@ -1,35 +1,31 @@
 using System.Collections;
 using Managers;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Gameplay
+namespace Gameplay.Player
 {
     [RequireComponent(typeof(Rigidbody))]
     public class Player : MonoBehaviour, IDamageable
     {
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private Transform respawnPoint;
-
-        [Header("Score")]
-        public int score;
-        [SerializeField] private float lastScore;
-        [SerializeField] private float scoreInterval;
-        [SerializeField] private int amountNeededForVictory = 100;
     
         [Header("Movement")]
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private LayerMask groundLayer;
 
         private bool _inKnockback = false;
-    
-        private float _lastShot = -1;
 
-        [Header("Events")]
-        public UnityEvent onScoreIncrease;
-        public UnityEvent onTakeDamage;
-        public UnityEvent onDeath;
+        public delegate void PlayerDelegate();
+        public event PlayerDelegate OnScoreIncrease;
+        public event PlayerDelegate OnTakeDamage;
+        public event PlayerDelegate onDeath;
+
+        private void Start()
+        {
+            GameManager.GetInstance().AddPlayer(this);
+        }
 
         public PlayerInput GetInput()
         {
@@ -59,23 +55,6 @@ namespace Gameplay
         {
             return _inKnockback;
         }
-        
-        /// <summary>
-        /// this function is used to add score to the player
-        /// </summary>
-        /// <param name="amount"></param>
-        public void ReceiveScore(int amount)
-        {
-            if(Time.time < lastScore + scoreInterval) return;
-            lastScore = Time.time;
-            score += amount;
-            onScoreIncrease.Invoke();
-
-            if (score >= amountNeededForVictory)
-            {
-                PlayerManager.GetInstance().HandleVictory(this);
-            }
-        }
 
         /// <summary>
         /// This function is used to knock back the player.
@@ -92,13 +71,17 @@ namespace Gameplay
             rigidbody.AddForce(direction * (-1 * knockbackStrength), ForceMode.Impulse);
             yield return new WaitForSeconds(knockbackDuration);
             _inKnockback = false;
-            print("Done!");
         }
         
         public void TakeDamage(Vector3 direction, Player source, float strength, float duration)
         {
-            onTakeDamage.Invoke();
+            OnTakeDamage?.Invoke();
             StartCoroutine(Knockback(direction, strength, duration));
+        }
+
+        public void InvokeOnScoreIncrease()
+        {
+            OnScoreIncrease?.Invoke();
         }
 
         /// <summary>
@@ -108,7 +91,7 @@ namespace Gameplay
         {
             transform.position = respawnPoint.position;
             transform.rotation = respawnPoint.rotation;
-            onTakeDamage.Invoke();
+            OnTakeDamage?.Invoke();
 
             _inKnockback = false;
         

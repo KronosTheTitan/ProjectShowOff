@@ -1,4 +1,4 @@
-using System;
+using Managers;
 using UnityEngine;
 
 namespace Gameplay
@@ -31,10 +31,10 @@ namespace Gameplay
 
         private void OnTriggerStay(Collider other)
         {
-            Player player = other.gameObject.GetComponent<Player>();
+            Player.Player player = other.gameObject.GetComponent<Player.Player>();
             if(player == null) return;
-        
-            player.ReceiveScore(scorePerTick);
+
+            GameManager.GetInstance().GetScoreManager().AddScore(player, scorePerTick);
         }
     }
 }

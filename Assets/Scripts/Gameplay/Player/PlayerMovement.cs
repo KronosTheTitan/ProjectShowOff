@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Player
 {
     public class PlayerMovement : MonoBehaviour
     {

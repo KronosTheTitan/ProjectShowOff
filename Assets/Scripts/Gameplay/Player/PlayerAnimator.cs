@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Player
 {
     public class PlayerAnimator : MonoBehaviour
     {

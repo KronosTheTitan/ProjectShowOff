@@ -15,7 +15,7 @@ namespace Gameplay.Player
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private LayerMask groundLayer;
 
-        private bool _inKnockback = false;
+        [SerializeField] private bool inKnockback = false;
 
         public delegate void PlayerDelegate();
         public event PlayerDelegate OnScoreIncrease;
@@ -53,7 +53,7 @@ namespace Gameplay.Player
         /// <returns></returns>
         public bool GetInKnockback()
         {
-            return _inKnockback;
+            return inKnockback;
         }
 
         /// <summary>
@@ -67,10 +67,10 @@ namespace Gameplay.Player
         /// <returns></returns>
         private IEnumerator Knockback(Vector3 direction, float knockbackStrength, float knockbackDuration)
         {
-            _inKnockback = true;
+            inKnockback = true;
             rigidbody.AddForce(direction * (-1 * knockbackStrength), ForceMode.Impulse);
             yield return new WaitForSeconds(knockbackDuration);
-            _inKnockback = false;
+            inKnockback = false;
         }
         
         public void TakeDamage(Vector3 direction, Player source, float strength, float duration)
@@ -93,7 +93,7 @@ namespace Gameplay.Player
             transform.rotation = respawnPoint.rotation;
             OnTakeDamage?.Invoke();
 
-            _inKnockback = false;
+            inKnockback = false;
         
             gameObject.SetActive(true);
         }

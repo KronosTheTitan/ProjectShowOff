@@ -405,20 +405,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 6180220784347086761}
   respawnPoint: {fileID: 0}
-  score: 0
-  lastScore: 0
-  scoreInterval: 0
-  amountNeededForVictory: 100
   rigidbody: {fileID: 8997495926624670982}
-  onScoreIncrease:
-    m_PersistentCalls:
-      m_Calls: []
-  onTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  inKnockback: 0
 --- !u!114 &8997495926624670984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,14 +426,17 @@ MonoBehaviour:
   tongueRange: 15
   tongueStrength: 0
   tonguePullDuration: 0
+  tongueWindup: 0
   horizontalInterval: 15
   verticalInterval: 15
   vocalSackRange: 1
   vocalSackStrength: 1
   vocalSackKnockbackDuration: 1
+  vocalSackWindup: 0
   kickRange: 5
   kickStrength: 1
   kickDamageDuration: 1
+  kickWindup: 0
 --- !u!114 &6428954032337239842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,9 +453,6 @@ MonoBehaviour:
   speed: 5
   rotationSpeed: 45
   jumpHeight: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
   rb: {fileID: 8997495926624670982}
 --- !u!114 &6180220784347086761
 MonoBehaviour:

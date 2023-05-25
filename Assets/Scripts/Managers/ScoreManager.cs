@@ -6,8 +6,8 @@ namespace Managers
 {
     public class ScoreManager : MonoBehaviour
     {
-        private Dictionary<Player, int> _scoreTable;
-        private Dictionary<Player, float> _lastScoreReceived;
+        private Dictionary<Player, int> _scoreTable = new Dictionary<Player, int>();
+        private Dictionary<Player, float> _lastScoreReceived = new Dictionary<Player, float>();
 
         [SerializeField] private float scoreIntervalInSeconds;
         [SerializeField] private int scoreNeededForVictory;

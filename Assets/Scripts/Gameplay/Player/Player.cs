@@ -35,7 +35,7 @@ namespace Gameplay.Player
         public bool IsGrounded() {
             Vector3 position = transform.position;
             Vector3 direction = Vector2.down;
-            float distance = 1f;
+            float distance = 3f;
              
             Debug.DrawRay(position, direction, Color.green);
             RaycastHit hit;

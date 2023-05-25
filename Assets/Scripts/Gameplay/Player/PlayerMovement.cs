@@ -38,7 +38,8 @@ namespace Gameplay.Player
             if (player.GetInput().actions["Jump"].WasPerformedThisFrame())
             {
                 rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
-                
+                Debug.Log("jump");
+
                 OnJump?.Invoke();
             }
         }

@@ -164,6 +164,8 @@ GameObject:
   m_Component:
   - component: {fileID: 829342019}
   - component: {fileID: 829342020}
+  - component: {fileID: 829342022}
+  - component: {fileID: 829342021}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -231,6 +233,34 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &829342021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829342017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af6ac4e568a43b4872bc641d9038065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreIntervalInSeconds: 100
+  scoreNeededForVictory: 1000
+--- !u!114 &829342022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829342017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6852683afce6cad4b977a113ab3ac86d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
+  scoreManager: {fileID: 829342021}
 --- !u!1 &962112578
 GameObject:
   m_ObjectHideFlags: 0

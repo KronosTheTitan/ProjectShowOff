@@ -17,9 +17,10 @@ namespace Gameplay.Player
         {
             if(player.GetInKnockback())
                 return;
-            
             if(!player.IsGrounded())
                 return;
+            
+            Debug.Log("VocalSack");
             
             if (player.GetInput().actions["Kick"].WasPerformedThisFrame())
             {

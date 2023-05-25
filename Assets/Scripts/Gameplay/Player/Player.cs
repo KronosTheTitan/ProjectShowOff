@@ -20,6 +20,7 @@ namespace Gameplay
     
         [Header("Movement")]
         [SerializeField] private new Rigidbody rigidbody;
+        [SerializeField] private LayerMask groundLayer;
 
         private bool _inKnockback = false;
     
@@ -34,12 +35,35 @@ namespace Gameplay
         {
             return playerInput;
         }
+
+        public bool IsGrounded() {
+            Vector3 position = transform.position;
+            Vector3 direction = Vector2.down;
+            float distance = 1f;
+             
+            Debug.DrawRay(position, direction, Color.green);
+            RaycastHit hit;
+            Physics.Raycast(position, direction, out hit, distance, groundLayer);
+                 
+            if (hit.collider != null)
+                return true;
+
+            return false;
+        }
         
+        /// <summary>
+        /// Checks if the player is in knockback.
+        /// </summary>
+        /// <returns></returns>
         public bool GetInKnockback()
         {
             return _inKnockback;
         }
         
+        /// <summary>
+        /// this function is used to add score to the player
+        /// </summary>
+        /// <param name="amount"></param>
         public void ReceiveScore(int amount)
         {
             if(Time.time < lastScore + scoreInterval) return;

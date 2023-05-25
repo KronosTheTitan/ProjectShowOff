@@ -11,7 +11,6 @@ namespace Gameplay
         [SerializeField] private float speed;
         [SerializeField] private float rotationSpeed;
         [SerializeField] private float jumpHeight;
-        [SerializeField] private LayerMask groundLayer;
         [SerializeField] private Rigidbody rb;
 
         public delegate void MovementDelegate();
@@ -20,9 +19,12 @@ namespace Gameplay
         
         private void Update()
         {
+            if(player.GetInKnockback())
+                return;
+            
             Move();
             
-            if(!IsGrounded())
+            if(!player.IsGrounded())
                 return;
 
             Jump();
@@ -42,22 +44,6 @@ namespace Gameplay
                 
                 OnJump?.Invoke();
             }
-        }
-
-        bool IsGrounded() {
-            Vector3 position = transform.position;
-            Vector3 direction = Vector2.down;
-            float distance = 1f;
-             
-            Debug.DrawRay(position, direction, Color.green);
-            RaycastHit hit;
-            Physics.Raycast(position, direction, out hit, distance, groundLayer);
-                 
-            if (hit.collider != null) {
-                return true;
-            }
-             
-            return false;
         }
     }
 }

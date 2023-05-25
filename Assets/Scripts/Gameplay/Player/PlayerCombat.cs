@@ -15,38 +15,46 @@ namespace Gameplay
 
         private void Update()
         {
+            if(player.GetInKnockback())
+                return;
+            
+            if(!player.IsGrounded())
+                return;
+            
             if (player.GetInput().actions["Kick"].WasPerformedThisFrame())
             {
+                OnKick?.Invoke();
                 Invoke("FrogKick",kickWindup);
-                Debug.Log("Kick");
             }
             
             if (player.GetInput().actions["VocalSack"].WasPerformedThisFrame())
             {
+                OnVocalSack?.Invoke();
                 Invoke("VocalSack",vocalSackWindup);
-                Debug.Log("Vocal sack");
             }
             
             if (player.GetInput().actions["TonguePull"].WasPerformedThisFrame())
             {
+                OnTonguePull?.Invoke();
                 Invoke("TongueHook",tongueWindup);
-                Debug.Log("Tongue pull");
             }
         }
 
+        [Header("Tongue Hook")]
         [SerializeField] private float tongueRange = 15;
         [SerializeField] private float tongueStrength;
         [SerializeField] private float tonguePullDuration;
         [SerializeField] private float tongueWindup;
+        /// <summary>
+        /// the tongue hook ability, it a targeted enemy in.
+        /// </summary>
         public void TongueHook()
         {
             RaycastHit hit;
             Physics.Raycast(transform.position + transform.forward, transform.forward, out hit, tongueRange);
                     
             if (hit.collider == null)
-            {
                 return;
-            }
 
             IDamageable damageable = hit.collider.gameObject.GetComponent<IDamageable>();
             if(damageable == null)
@@ -54,12 +62,9 @@ namespace Gameplay
 
             damageable.TakeDamage(-(transform.position - hit.collider.transform.position), player, tongueStrength,
                 tonguePullDuration);
-            Debug.Log("hit someone");
-            
-            OnTonguePull?.Invoke();
         }
 
-
+        [Header("Vocal Sack")]
         [SerializeField] private int horizontalInterval = 15; 
         [SerializeField] private int verticalInterval = 15;
         [SerializeField] private float vocalSackRange = 1;
@@ -91,10 +96,9 @@ namespace Gameplay
                         vocalSackStrength, vocalSackKnockbackDuration);
                 }
             }
-            
-            OnVocalSack?.Invoke();
         }
 
+        [Header("Frog Kick")]
         [SerializeField] private float kickRange = 5;
         [SerializeField] private float kickStrength = 1;
         [SerializeField] private float kickDamageDuration = 1;
@@ -114,8 +118,6 @@ namespace Gameplay
             damageable.TakeDamage(transform.position - hit.collider.transform.position, player, kickStrength,
                 kickDamageDuration);
             Debug.Log("hit someone");
-            
-            OnKick?.Invoke();
         }
     }
 }

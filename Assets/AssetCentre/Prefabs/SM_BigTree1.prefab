@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5694326604840339977}
   - component: {fileID: 7557806162792447683}
   - component: {fileID: -3458323381077888814}
+  - component: {fileID: 7545672355474474263}
   m_Layer: 0
   m_Name: SM_BigTree1
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8350312359108009750}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1053.4236, y: 723.5502, z: 1135.7272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,3 +99,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3877841677461667978, guid: 00d9930d9a05de7489f70d000868d9b6, type: 3}
+--- !u!205 &7545672355474474263
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350312359108009750}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.28721854
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7557806162792447683}
+  - screenRelativeHeight: 0.14024563
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7557806162792447683}
+  - screenRelativeHeight: 0.010500823
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7557806162792447683}
+  m_Enabled: 1

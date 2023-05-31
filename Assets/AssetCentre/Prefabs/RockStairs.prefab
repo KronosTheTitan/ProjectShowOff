@@ -120,6 +120,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rock (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7093797012870982724, guid: 09723fccdf65a5c48884212a4ceb7ab1,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09723fccdf65a5c48884212a4ceb7ab1, type: 3}
 --- !u!4 &6201921703498871383 stripped
@@ -135,6 +140,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4828531009758925417}
     m_Modifications:
+    - target: {fileID: -5002622333149817747, guid: cf75cfcccf15e97408a2e6ce8127c7f5,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3788275667461736060, guid: cf75cfcccf15e97408a2e6ce8127c7f5,
         type: 3}
       propertyPath: m_RootOrder
@@ -275,6 +285,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_HutStairs (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5821736281195528725, guid: 06548c5ff998f9c4bbd913b0036c764d,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06548c5ff998f9c4bbd913b0036c764d, type: 3}
 --- !u!4 &5079627539402686669 stripped
@@ -350,6 +365,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_HutStairs (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5821736281195528725, guid: 06548c5ff998f9c4bbd913b0036c764d,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06548c5ff998f9c4bbd913b0036c764d, type: 3}
 --- !u!4 &5079627540192494707 stripped
@@ -424,6 +444,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_HutStairs (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5821736281195528725, guid: 06548c5ff998f9c4bbd913b0036c764d,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06548c5ff998f9c4bbd913b0036c764d, type: 3}
@@ -515,6 +540,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rock (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7093797012870982724, guid: 09723fccdf65a5c48884212a4ceb7ab1,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09723fccdf65a5c48884212a4ceb7ab1, type: 3}
 --- !u!4 &6201921705040048069 stripped
@@ -530,6 +560,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4828531009758925417}
     m_Modifications:
+    - target: {fileID: -5002622333149817747, guid: cf75cfcccf15e97408a2e6ce8127c7f5,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3788275667461736060, guid: cf75cfcccf15e97408a2e6ce8127c7f5,
         type: 3}
       propertyPath: m_RootOrder

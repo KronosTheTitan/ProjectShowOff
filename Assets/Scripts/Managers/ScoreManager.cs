@@ -46,7 +46,11 @@ namespace Managers
                 FourWaySplitScreen.SetActive(true);
 
             }
-            else FourWaySplitScreen.SetActive(false);
+            else if (GameManager.GetInstance().GetPlayers().Length < 3)
+            {
+                FourWaySplitScreen.SetActive(false);
+            }
+                
 
             _scoreTable.Add(player, 0);
             _lastScoreReceived.Add(player, Time.time - scoreIntervalInSeconds);
@@ -54,12 +58,27 @@ namespace Managers
            
         }
 
-        
+        public void RemoveNewPlayer(Player player)
+        {
+            if (GameManager.GetInstance().GetPlayers().Length > 2)
+            {
+                FourWaySplitScreen.SetActive(true);
+
+            }
+            else FourWaySplitScreen.SetActive(false);
+
+            _scoreTable.Remove(player);
+            _lastScoreReceived.Remove(player);
+            updateScore();
+
+        }
+
+
 
 
         private void updateScore()
         {
-            for(int i = 0; i <= _scoreTable.Count; i++)
+            for(int i = 0; i <= _scoreTable.Count-1; i++)
             {
                 playerScores[i].text = "Score: " + GetScore(GameManager.GetInstance().GetPlayer(i));
             }

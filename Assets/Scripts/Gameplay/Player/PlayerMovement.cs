@@ -1,4 +1,5 @@
 ﻿using Managers;
+
 using UnityEngine;
 
 namespace Gameplay.Player
@@ -17,7 +18,13 @@ namespace Gameplay.Player
         
         private void Update()
         {
-            if(player.GetInKnockback())
+            if (player.GetInput().actions["RemovePlayer"].WasPerformedThisFrame())
+            {
+                player.RemovePlayer(player);
+                
+            }
+
+            if (player.GetInKnockback())
                 return;
             
             Move();

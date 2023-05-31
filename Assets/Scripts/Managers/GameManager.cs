@@ -54,7 +54,13 @@ namespace Managers
             players.Add(newPlayer);
             scoreManager.AddNewPlayer(newPlayer);
         }
-        
+
+        public void RemovePlayer(Player thisPlayer)
+        {
+            players.Remove(thisPlayer);
+            scoreManager.AddNewPlayer(thisPlayer);
+        }
+
 
 
         public void HandleVictory(Player winner)

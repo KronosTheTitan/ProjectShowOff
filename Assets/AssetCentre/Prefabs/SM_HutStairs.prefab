@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 395214005763173702}
   - component: {fileID: 3662498100281008867}
   - component: {fileID: 1528754198321698345}
-  - component: {fileID: 5821736281195528725}
+  - component: {fileID: 9007154968066411422}
   m_Layer: 3
   m_Name: SM_HutStairs
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5821736281195528725
+--- !u!64 &9007154968066411422
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

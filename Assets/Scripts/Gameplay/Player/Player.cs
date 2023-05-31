@@ -101,5 +101,20 @@ namespace Gameplay.Player
         
             gameObject.SetActive(true);
         }
+
+        public void RemovePlayer(Player player)
+        {
+            StartCoroutine(DelayedRemovePlayer(player));
+        }
+
+        private IEnumerator DelayedRemovePlayer(Player player)
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            
+            Destroy(player.gameObject);
+            GameManager.GetInstance().RemovePlayer(player);
+            yield return null;
+        }
     }
 }

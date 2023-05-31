@@ -17,6 +17,12 @@ namespace Managers
             return _scoreTable[player];
         }
 
+        public void Clear()
+        {
+            _scoreTable.Clear();
+            _lastScoreReceived.Clear();
+        }
+
         public void AddScore(Player player, int amount)
         {
             if(Time.time < _lastScoreReceived[player] + scoreIntervalInSeconds)

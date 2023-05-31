@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GreenWater
+  m_Name: SmolPurpleWatr
   m_Shader: {fileID: -6465566751694194690, guid: 81bffce8894c6a84f9c403de87fdd41a,
     type: 3}
   m_ValidKeywords: []
@@ -40,15 +40,15 @@ Material:
     - _FoamSpeed: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RippleDensity: 133.4
-    - _RippleSlimeness: 4.28
-    - _RippleSpeed: 7.6
+    - _RippleDensity: 56.11
+    - _RippleSlimeness: 5.05
+    - _RippleSpeed: 10.4
     - _WaveScale: 0
     - _WaveSpeed: 0
     m_Colors:
-    - _BaseColor: {r: 0.2613557, g: 0.6415094, b: 0.16037735, a: 1}
-    - _FoamColor: {r: 0.014417935, g: 0.33962262, b: 0.039175663, a: 1}
-    - _RippleColor: {r: 1, g: 0, b: 0.9910693, a: 1}
+    - _BaseColor: {r: 0.89277244, g: 0.0925151, b: 0.9339623, a: 1}
+    - _FoamColor: {r: 0.6679667, g: 0.048593827, b: 0.7924528, a: 1}
+    - _RippleColor: {r: 0, g: 1, b: 0.18831158, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1201791219745994459
 MonoBehaviour:

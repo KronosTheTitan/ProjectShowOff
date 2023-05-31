@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8244117967944405041}
   - component: {fileID: 6164313900975990011}
   - component: {fileID: -6527664143977373725}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_HangingLigt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

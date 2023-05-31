@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3074953453944107583}
   - component: {fileID: 957184890005227253}
   - component: {fileID: -2468982832178302970}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Hut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,6 +185,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Full_Hut
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 423657b6f602f44e6aa0c29da82c5686,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7357843237317245519, guid: 423657b6f602f44e6aa0c29da82c5686,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144394004440419581, guid: 423657b6f602f44e6aa0c29da82c5686,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8835409689826365435, guid: 423657b6f602f44e6aa0c29da82c5686,
         type: 3}

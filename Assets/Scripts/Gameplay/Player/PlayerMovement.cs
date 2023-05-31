@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -25,6 +26,9 @@ namespace Gameplay.Player
                 return;
 
             Jump();
+
+            
+            
         }
 
         private void Move()

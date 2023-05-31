@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
+  m_Name: PurpleWater
   m_Shader: {fileID: -6465566751694194690, guid: 81bffce8894c6a84f9c403de87fdd41a,
     type: 3}
   m_ValidKeywords: []
@@ -40,11 +40,11 @@ Material:
     - _FoamSpeed: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RippleDensity: 2.37
-    - _RippleSlimeness: 3
-    - _RippleSpeed: 0.54
-    - _WaveScale: 1.43
-    - _WaveSpeed: 0.34
+    - _RippleDensity: 236.33
+    - _RippleSlimeness: 5.2
+    - _RippleSpeed: 0.9
+    - _WaveScale: 0.44
+    - _WaveSpeed: 0.88
     m_Colors:
     - _BaseColor: {r: 0.7938853, g: 0.25938943, b: 0.8207547, a: 0}
     - _FoamColor: {r: 0.514151, g: 1, b: 0.5796976, a: 0}

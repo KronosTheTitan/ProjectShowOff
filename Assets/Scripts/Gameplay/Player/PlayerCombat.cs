@@ -20,7 +20,7 @@ namespace Gameplay.Player
             if(!player.IsGrounded())
                 return;
             
-            Debug.Log("VocalSack");
+            
             
             if (player.GetInput().actions["Kick"].WasPerformedThisFrame())
             {
@@ -95,6 +95,7 @@ namespace Gameplay.Player
 
                     damageable.TakeDamage(transform.position - hit.collider.transform.position, player,
                         vocalSackStrength, vocalSackKnockbackDuration);
+                    Debug.Log("VocalSack Hit");
                 }
             }
         }

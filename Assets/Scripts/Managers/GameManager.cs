@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Gameplay.Player;
+using Manager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -61,7 +62,14 @@ namespace Managers
 
         public Player[] GetPlayers()
         {
+            
             return players.ToArray();
+            
+        }
+
+        public Player GetPlayer(int index)
+        {
+            return players[index];
         }
 
         public void ReplayGame()
@@ -83,7 +91,15 @@ namespace Managers
             players.Add(newPlayer);
             scoreManager.AddNewPlayer(newPlayer);
         }
-        
+
+        public void RemovePlayer(Player thisPlayer)
+        {
+            players.Remove(thisPlayer);
+            scoreManager.AddNewPlayer(thisPlayer);
+        }
+
+
+
         public void HandleVictory(Player winner)
         {
             OnGameOver?.Invoke(winner);

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4049725915062985201}
   - component: {fileID: 2294429024221730107}
   - component: {fileID: 2955977388597418601}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_SimplePole
   m_TagString: Untagged
   m_Icon: {fileID: 0}

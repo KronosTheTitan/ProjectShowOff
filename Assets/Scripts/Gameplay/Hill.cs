@@ -14,7 +14,7 @@ namespace Gameplay
 
         [SerializeField] private float moveTimeInSeconds;
         [SerializeField] private float lastMoveInSeconds;
-        [SerializeField] private Transform[] hillSites;
+        [SerializeField] private GameObject[] hillSites;
         [SerializeField] private int currentSite;
 
         [SerializeField] private List<Player.Player> playersOnHill;
@@ -24,15 +24,19 @@ namespace Gameplay
 
         private void Update()
         {
-            if(lastMoveInSeconds + moveTimeInSeconds > Time.time)
+            if (lastMoveInSeconds + moveTimeInSeconds > Time.time)
                 return;
 
+            hillSites[currentSite].SetActive(false);
             currentSite++;
 
             if (currentSite >= hillSites.Length)
                 currentSite = 0;
 
-            transform.position = hillSites[currentSite].position;
+
+            transform.position = hillSites[currentSite].transform.position;
+            hillSites[currentSite].SetActive(true);
+
             lastMoveInSeconds = Time.time;
         }
 
@@ -53,7 +57,7 @@ namespace Gameplay
         {
             Player.Player player = other.gameObject.GetComponent<Player.Player>();
             if(player == null) return;
-
+            
             playersOnHill.Add(player);
         }
     }

@@ -14,6 +14,7 @@ namespace Gameplay.Player
         [Header("Movement")]
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private float groundedDistance;
 
         [SerializeField] private bool inKnockback = false;
 
@@ -25,7 +26,10 @@ namespace Gameplay.Player
         private void Start()
         {
             GameManager.GetInstance().AddPlayer(this);
+            
         }
+
+       
 
         public PlayerInput GetInput()
         {
@@ -35,7 +39,7 @@ namespace Gameplay.Player
         public bool IsGrounded() {
             Vector3 position = transform.position;
             Vector3 direction = Vector2.down;
-            float distance = 3f;
+            float distance = groundedDistance;
              
             Debug.DrawRay(position, direction, Color.green);
             RaycastHit hit;
@@ -96,6 +100,21 @@ namespace Gameplay.Player
             inKnockback = false;
         
             gameObject.SetActive(true);
+        }
+
+        public void RemovePlayer(Player player)
+        {
+            StartCoroutine(DelayedRemovePlayer(player));
+        }
+
+        private IEnumerator DelayedRemovePlayer(Player player)
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            
+            Destroy(player.gameObject);
+            GameManager.GetInstance().RemovePlayer(player);
+            yield return null;
         }
     }
 }

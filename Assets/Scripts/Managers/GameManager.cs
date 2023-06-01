@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Gameplay;
 using Gameplay.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -34,6 +35,7 @@ namespace Managers
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private PlayerUIManager playerUIManager;
         [SerializeField] private UIManager uiManager;
+        [SerializeField] private Hill hill;
 
         [SerializeField] private float gameStartTimeInSeconds;
         [SerializeField] private float gameDurationInSeconds;
@@ -73,6 +75,11 @@ namespace Managers
         public PlayerUIManager GetPlayerUIManager()
         {
             return playerUIManager;
+        }
+
+        public Hill GetHill()
+        {
+            return hill;
         }
 
         #endregion

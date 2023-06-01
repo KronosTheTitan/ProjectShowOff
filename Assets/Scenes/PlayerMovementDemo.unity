@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -247,6 +247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreIntervalInSeconds: 100
   scoreNeededForVictory: 1000
+  playerScores: []
+  FourWaySplitScreen: {fileID: 0}
 --- !u!114 &829342022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +263,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   scoreManager: {fileID: 829342021}
+  gameStartTimeInSeconds: 0
+  gameDurationInSeconds: 0
 --- !u!1 &962112578
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,9 +334,10 @@ MonoBehaviour:
   moveTimeInSeconds: 20
   lastMoveInSeconds: 0
   hillSites:
-  - {fileID: 420214854}
-  - {fileID: 1226994500}
+  - {fileID: 420214853}
+  - {fileID: 1226994499}
   currentSite: 0
+  playersOnHill: []
 --- !u!65 &1017516999
 BoxCollider:
   m_ObjectHideFlags: 0

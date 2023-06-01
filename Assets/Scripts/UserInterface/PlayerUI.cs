@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace UserInterface
 {
+    [RequireComponent(typeof(RectTransform))]
     public class PlayerUI : MonoBehaviour
     {
         [SerializeField] private Player player;
@@ -13,10 +14,11 @@ namespace UserInterface
 
         private void Start()
         {
+            GameManager.GetInstance().GetPlayerUIManager().AddPlayerUI(this, player);
             player.OnScoreIncrease += UpdateScore;
         }
 
-        public void UpdateScore()
+        private void UpdateScore()
         {
             score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();
         }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using Managers;
 
-namespace Manager {
+namespace Managers {
     public class UIManager : MonoBehaviour
     {
         
@@ -9,7 +9,6 @@ namespace Manager {
         
         public void UpdateSplitScreen()
         {
-
             if (GameManager.GetInstance().GetPlayers().Length >= 1)
             {
                 fourWaySplitScreen.SetActive(false);

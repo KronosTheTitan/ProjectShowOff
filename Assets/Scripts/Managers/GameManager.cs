@@ -32,6 +32,8 @@ namespace Managers
 
         [SerializeField] private List<Player> players;
         [SerializeField] private ScoreManager scoreManager;
+        [SerializeField] private PlayerUIManager playerUIManager;
+        [SerializeField] private UIManager uiManager;
 
         [SerializeField] private float gameStartTimeInSeconds;
         [SerializeField] private float gameDurationInSeconds;
@@ -66,6 +68,11 @@ namespace Managers
         public ScoreManager GetScoreManager()
         {
             return scoreManager;
+        }
+        
+        public PlayerUIManager GetPlayerUIManager()
+        {
+            return playerUIManager;
         }
 
         #endregion
@@ -103,12 +110,15 @@ namespace Managers
         {
             players.Add(newPlayer);
             scoreManager.AddNewPlayer(newPlayer);
+            uiManager.UpdateSplitScreen();
         }
 
         public void RemovePlayer(Player thisPlayer)
         {
             players.Remove(thisPlayer);
             scoreManager.AddNewPlayer(thisPlayer);
+            playerUIManager.RemovePlayer(thisPlayer);
+            uiManager.UpdateSplitScreen();
         }
 
         public void HandleVictory(Player winner)

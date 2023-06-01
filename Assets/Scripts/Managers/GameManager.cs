@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Gameplay.Player;
-using Manager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,18 +28,49 @@ namespace Managers
         }
         #endregion
 
+        #region Variables
+
         [SerializeField] private List<Player> players;
         [SerializeField] private ScoreManager scoreManager;
 
         [SerializeField] private float gameStartTimeInSeconds;
         [SerializeField] private float gameDurationInSeconds;
 
+        #endregion
+
+        #region UnityEventMethods
+        
         private void Start()
         {
             DontDestroyOnLoad(gameObject);
         }
 
         private void Update()
+        {
+            UpdateGameTime();
+        }
+
+        #endregion
+        
+        #region GetMethods
+        public Player[] GetPlayers()
+        {
+            return players.ToArray();
+        }
+
+        public Player GetPlayer(int index)
+        {
+            return players[index];
+        }
+        
+        public ScoreManager GetScoreManager()
+        {
+            return scoreManager;
+        }
+
+        #endregion
+
+        private void UpdateGameTime()
         {
             if(gameStartTimeInSeconds + gameDurationInSeconds > Time.time)
                 return;
@@ -59,19 +89,7 @@ namespace Managers
             
             HandleVictory(highestScoringPlayer);
         }
-
-        public Player[] GetPlayers()
-        {
-            
-            return players.ToArray();
-            
-        }
-
-        public Player GetPlayer(int index)
-        {
-            return players[index];
-        }
-
+        
         public void ReplayGame()
         {
             //reloads the scene
@@ -79,11 +97,6 @@ namespace Managers
             scoreManager.Clear();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             gameStartTimeInSeconds = Time.time;
-        }
-
-        public ScoreManager GetScoreManager()
-        {
-            return scoreManager;
         }
 
         public void AddPlayer(Player newPlayer)
@@ -97,8 +110,6 @@ namespace Managers
             players.Remove(thisPlayer);
             scoreManager.AddNewPlayer(thisPlayer);
         }
-
-
 
         public void HandleVictory(Player winner)
         {

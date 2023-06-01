@@ -24,18 +24,17 @@ namespace Gameplay
 
         private void Update()
         {
+            HandleScore();
+            
             if (lastMoveInSeconds + moveTimeInSeconds > Time.time)
                 return;
-
-            hillSites[currentSite].SetActive(false);
+            
             currentSite++;
 
             if (currentSite >= hillSites.Length)
                 currentSite = 0;
-
-
+            
             transform.position = hillSites[currentSite].transform.position;
-            hillSites[currentSite].SetActive(true);
 
             lastMoveInSeconds = Time.time;
         }

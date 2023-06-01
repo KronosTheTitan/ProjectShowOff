@@ -16,7 +16,7 @@ namespace UserInterface
             player.OnScoreIncrease += UpdateScore;
         }
 
-        public void UpdateScore()
+        private void UpdateScore()
         {
             score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();
         }

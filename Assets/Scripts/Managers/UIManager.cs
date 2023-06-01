@@ -1,34 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Gameplay.Player;
 using Managers;
 
 namespace Manager {
     public class UIManager : MonoBehaviour
     {
         
-        [SerializeField] private GameObject FourWaySplitScreen;
-
-
-
-
-
-        public void updateSplitScreen()
+        [SerializeField] private GameObject fourWaySplitScreen;
+        
+        public void UpdateSplitScreen()
         {
 
             if (GameManager.GetInstance().GetPlayers().Length >= 1)
             {
-                FourWaySplitScreen.SetActive(false);
+                fourWaySplitScreen.SetActive(false);
                 
             }
             else if (GameManager.GetInstance().GetPlayers().Length >= 2)
             {
                 
-                FourWaySplitScreen.SetActive(true);
+                fourWaySplitScreen.SetActive(true);
             }
-
         }
-
     }
 }

@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Gameplay.Player;
 using Manager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -32,6 +32,34 @@ namespace Managers
         [SerializeField] private List<Player> players;
         [SerializeField] private ScoreManager scoreManager;
 
+        [SerializeField] private float gameStartTimeInSeconds;
+        [SerializeField] private float gameDurationInSeconds;
+
+        private void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+        private void Update()
+        {
+            if(gameStartTimeInSeconds + gameDurationInSeconds > Time.time)
+                return;
+
+            Player highestScoringPlayer = null;
+            int highestScore = int.MinValue;
+
+            foreach (Player player in players)
+            {
+                if(highestScore > scoreManager.GetScore(player))
+                    continue;
+
+                highestScore = scoreManager.GetScore(player);
+                highestScoringPlayer = player;
+            }
+            
+            HandleVictory(highestScoringPlayer);
+        }
+
         public Player[] GetPlayers()
         {
             
@@ -42,6 +70,15 @@ namespace Managers
         public Player GetPlayer(int index)
         {
             return players[index];
+        }
+
+        public void ReplayGame()
+        {
+            //reloads the scene
+            players.Clear();
+            scoreManager.Clear();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            gameStartTimeInSeconds = Time.time;
         }
 
         public ScoreManager GetScoreManager()

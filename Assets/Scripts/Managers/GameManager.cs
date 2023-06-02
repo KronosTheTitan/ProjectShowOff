@@ -35,6 +35,7 @@ namespace Managers
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private PlayerUIManager playerUIManager;
         [SerializeField] private UIManager uiManager;
+        [SerializeField] private SpawnManager spawnManager;
         [SerializeField] private Hill hill;
 
         [SerializeField] private float gameStartTimeInSeconds;
@@ -43,11 +44,6 @@ namespace Managers
         #endregion
 
         #region UnityEventMethods
-        
-        private void Start()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
 
         private void Update()
         {
@@ -75,6 +71,11 @@ namespace Managers
         public PlayerUIManager GetPlayerUIManager()
         {
             return playerUIManager;
+        }
+        
+        public SpawnManager GetSpawnManager()
+        {
+            return spawnManager;
         }
 
         public Hill GetHill()
@@ -107,24 +108,25 @@ namespace Managers
         public void ReplayGame()
         {
             //reloads the scene
-            players.Clear();
-            scoreManager.Clear();
+            _instance = null;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             gameStartTimeInSeconds = Time.time;
         }
 
-        public void AddPlayer(Player newPlayer)
+        public void AddPlayer(Player player)
         {
-            players.Add(newPlayer);
-            scoreManager.AddNewPlayer(newPlayer);
+            players.Add(player);
+            scoreManager.AddNewPlayer(player);
+            spawnManager.AssignAvailableSpawn(player);
             uiManager.UpdateSplitScreen();
         }
 
-        public void RemovePlayer(Player thisPlayer)
+        public void RemovePlayer(Player player)
         {
-            players.Remove(thisPlayer);
-            scoreManager.AddNewPlayer(thisPlayer);
-            playerUIManager.RemovePlayer(thisPlayer);
+            players.Remove(player);
+            scoreManager.AddNewPlayer(player);
+            playerUIManager.RemovePlayer(player);
+            spawnManager.RemovePlayer(player);
             uiManager.UpdateSplitScreen();
         }
 

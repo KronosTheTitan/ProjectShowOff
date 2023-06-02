@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gameplay.Player
@@ -41,6 +42,10 @@ namespace Gameplay.Player
         }
 
         [Header("Tongue Hook")]
+        [SerializeField] private int horizontalRaysTongue = 6; 
+        [SerializeField] private int horizontalArcTongue = 90; 
+        [SerializeField] private int verticalRaysTongue = 6;
+        [SerializeField] private int verticalArcTongue = 45;
         [SerializeField] private float tongueRange = 15;
         [SerializeField] private float tongueStrength;
         [SerializeField] private float tonguePullDuration;
@@ -49,35 +54,11 @@ namespace Gameplay.Player
         /// the tongue hook ability, it a targeted enemy in.
         /// </summary>
         public void TongueHook()
-        {
-            RaycastHit hit;
-            Physics.Raycast(transform.position + transform.forward, transform.forward, out hit, tongueRange);
-                    
-            if (hit.collider == null)
-                return;
-
-            IDamageable damageable = hit.collider.gameObject.GetComponent<IDamageable>();
-            if(damageable == null)
-                return;
-
-            damageable.TakeDamage(-(transform.position - hit.collider.transform.position), player, tongueStrength,
-                tonguePullDuration);
-        }
-
-        [Header("Vocal Sack")]
-        [SerializeField] private int horizontalInterval = 15; 
-        [SerializeField] private int verticalInterval = 15;
-        [SerializeField] private float vocalSackRange = 1;
-        [SerializeField] private float vocalSackStrength = 1;
-        [SerializeField] private float vocalSackKnockbackDuration = 1;
-        [SerializeField] private float vocalSackWindup;
-        public void VocalSack()
-        {
-            for (int x = -(horizontalInterval * 2); x < horizontalInterval * 2; x += horizontalInterval)
+        {for (float x = -(horizontalArc / 2); x < horizontalArcTongue/2; x += horizontalArcTongue/horizontalRaysTongue)
             {
                 Quaternion horizontal = Quaternion.AngleAxis(x , transform.up);
                 
-                for (int y = -(verticalInterval * 2); y < verticalInterval * 2; y += verticalInterval)
+                for (float y = -(verticalArc / 2); y < verticalArcTongue / 2; y += verticalArc/verticalRaysTongue)
                 {
                     Quaternion vertical = Quaternion.AngleAxis(y,transform.right);
                     Quaternion direction = horizontal * vertical;
@@ -91,6 +72,51 @@ namespace Gameplay.Player
                     IDamageable damageable = hit.collider.gameObject.GetComponent<IDamageable>();
                     if(damageable == null)
                         continue;
+
+                    damageable.TakeDamage(-(transform.position - hit.collider.transform.position), player, tongueStrength,
+                        tonguePullDuration);
+                    
+                    return;
+                }
+            }
+        }
+
+        [Header("Vocal Sack")]
+        [SerializeField] private int horizontalRays = 6; 
+        [SerializeField] private int horizontalArc = 90; 
+        [SerializeField] private int verticalRays = 6;
+        [SerializeField] private int verticalArc = 45;
+        [SerializeField] private float vocalSackRange = 1;
+        [SerializeField] private float vocalSackStrength = 1;
+        [SerializeField] private float vocalSackKnockbackDuration = 1;
+        [SerializeField] private float vocalSackWindup;
+        public void VocalSack()
+        {
+            List<IDamageable> previousHits = new List<IDamageable>();
+
+            for (float x = -(horizontalArc / 2); x < horizontalArc/2; x += horizontalArc/horizontalRays)
+            {
+                Quaternion horizontal = Quaternion.AngleAxis(x , transform.up);
+                
+                for (float y = -(verticalArc / 2); y < verticalArc / 2; y += verticalArc/verticalRays)
+                {
+                    Quaternion vertical = Quaternion.AngleAxis(y,transform.right);
+                    Quaternion direction = horizontal * vertical;
+                    
+                    RaycastHit hit;
+                    Physics.Raycast(transform.position + transform.forward / 2, direction * transform.forward, out hit, vocalSackRange);
+                    
+                    if (hit.collider == null)
+                        continue;
+
+                    IDamageable damageable = hit.collider.gameObject.GetComponent<IDamageable>();
+                    if(damageable == null)
+                        continue;
+                    
+                    if(previousHits.Contains(damageable))
+                        continue;
+                    
+                    previousHits.Add(damageable);
 
                     damageable.TakeDamage(transform.position - hit.collider.transform.position, player,
                         vocalSackStrength, vocalSackKnockbackDuration);

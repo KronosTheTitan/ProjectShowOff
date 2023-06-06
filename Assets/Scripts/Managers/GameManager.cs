@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Gameplay;
 using Gameplay.Player;
@@ -31,11 +32,11 @@ namespace Managers
 
         #region Variables
 
-        [SerializeField] private List<Player> players;
+        [SerializeField] private Player[] players;
         [SerializeField] private ScoreManager scoreManager;
-        [SerializeField] private PlayerUIManager playerUIManager;
         [SerializeField] private UIManager uiManager;
-        [SerializeField] private SpawnManager spawnManager;
+        [SerializeField] private SplitScreenManager splitScreenManager;
+        [SerializeField] private ControllerManager controllerManager;
         [SerializeField] private Hill hill;
 
         [SerializeField] private float gameStartTimeInSeconds;
@@ -44,6 +45,14 @@ namespace Managers
         #endregion
 
         #region UnityEventMethods
+
+        private void Start()
+        {
+            foreach (Player player in players)
+            {
+                AddPlayer(player);
+            }
+        }
 
         private void Update()
         {
@@ -55,7 +64,17 @@ namespace Managers
         #region GetMethods
         public Player[] GetPlayers()
         {
-            return players.ToArray();
+            //Yes I am fully aware this code is a little odd.
+            //I wrote it this way to avoid the list of players being edited from
+            //outside this class. And just returning the array directly makes this possible.
+            Player[] output = new Player[players.Length];
+            
+            for (int i = 0; i < output.Length; i++)
+            {
+                output[i] = players[i];
+            }
+
+            return output;
         }
 
         public Player GetPlayer(int index)
@@ -68,14 +87,14 @@ namespace Managers
             return scoreManager;
         }
         
-        public PlayerUIManager GetPlayerUIManager()
+        public SplitScreenManager GetSplitScreenManager()
         {
-            return playerUIManager;
+            return splitScreenManager;
         }
         
-        public SpawnManager GetSpawnManager()
+        public ControllerManager GetControllerManager()
         {
-            return spawnManager;
+            return controllerManager;
         }
 
         public Hill GetHill()
@@ -115,18 +134,13 @@ namespace Managers
 
         public void AddPlayer(Player player)
         {
-            players.Add(player);
             scoreManager.AddNewPlayer(player);
-            spawnManager.AssignAvailableSpawn(player);
-            uiManager.UpdateSplitScreen();
+//            uiManager.UpdateSplitScreen();
+            controllerManager.AddPlayerToTable(player);
         }
 
         public void RemovePlayer(Player player)
         {
-            players.Remove(player);
-            scoreManager.AddNewPlayer(player);
-            playerUIManager.RemovePlayer(player);
-            spawnManager.RemovePlayer(player);
             uiManager.UpdateSplitScreen();
         }
 

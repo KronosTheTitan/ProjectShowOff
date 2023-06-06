@@ -22,19 +22,19 @@ namespace Gameplay.Player
             if(!player.IsGrounded())
                 return;
 
-            if (player.GetInput().actions["Kick"].WasPerformedThisFrame())
+            if (player.GetController().GetKickButton())
             {
                 OnKick?.Invoke();
                 Invoke("FrogKick",kickWindup);
             }
             
-            if (player.GetInput().actions["VocalSack"].WasPerformedThisFrame())
+            if (player.GetController().GetVocalSackButton())
             {
                 OnVocalSack?.Invoke();
                 Invoke("VocalSack",vocalSackWindup);
             }
             
-            if (player.GetInput().actions["TonguePull"].WasPerformedThisFrame())
+            if (player.GetController().GetTonguePullButton())
             {
                 OnTonguePull?.Invoke();
                 Invoke("TongueHook",tongueWindup);
@@ -54,7 +54,8 @@ namespace Gameplay.Player
         /// the tongue hook ability, it a targeted enemy in.
         /// </summary>
         public void TongueHook()
-        {for (float x = -(horizontalArc / 2); x < horizontalArcTongue/2; x += horizontalArcTongue/horizontalRaysTongue)
+        {
+            for (float x = -(horizontalArc / 2); x < horizontalArcTongue/2; x += horizontalArcTongue/horizontalRaysTongue)
             {
                 Quaternion horizontal = Quaternion.AngleAxis(x , transform.up);
                 

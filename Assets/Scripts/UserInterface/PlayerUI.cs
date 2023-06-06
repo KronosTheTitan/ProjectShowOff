@@ -14,7 +14,6 @@ namespace UserInterface
 
         private void Start()
         {
-            GameManager.GetInstance().GetPlayerUIManager().AddPlayerUI(this, player);
             player.OnScoreIncrease += UpdateScore;
         }
 

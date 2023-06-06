@@ -9,9 +9,9 @@ namespace Gameplay.Player
     public class Player : MonoBehaviour, IDamageable
     {
         #region Variables
-        [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private Controller controller;
         [SerializeField] private Transform respawnPoint;
-    
+
         [Header("Movement")]
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private LayerMask groundLayer;
@@ -24,21 +24,13 @@ namespace Gameplay.Player
         public delegate void PlayerDelegate();
         public event PlayerDelegate OnScoreIncrease;
         public event PlayerDelegate OnTakeDamage;
+        public event PlayerDelegate OnConnect;
+        public event PlayerDelegate OnDisconnect;
         #endregion
 
-        #region UnityEventMethods
-
-        private void Start()
+        public Controller GetController()
         {
-            GameManager.GetInstance().AddPlayer(this);
-            
-        }
-
-        #endregion
-
-        public PlayerInput GetInput()
-        {
-            return playerInput;
+            return controller;
         }
 
         public bool IsGrounded() {
@@ -51,7 +43,6 @@ namespace Gameplay.Player
                  
             if (hit.collider == null)
                 return false;
-
             return true;
         }
         
@@ -113,9 +104,13 @@ namespace Gameplay.Player
         {
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
-            
-            Destroy(player.gameObject);
+
+            player.gameObject.SetActive(false);
             GameManager.GetInstance().RemovePlayer(player);
+            GameManager.GetInstance().GetControllerManager().RemoveControllerFromPlayer(this);
+            
+            OnDisconnect?.Invoke();
+            
             yield return null;
         }
 
@@ -134,6 +129,13 @@ namespace Gameplay.Player
             rigidbody.AddForce(direction * (-1 * knockbackStrength), ForceMode.Impulse);
             yield return new WaitForSeconds(knockbackDuration);
             inKnockback = false;
+        }
+
+        public void Activate(Controller iController)
+        {
+            controller = iController;
+            gameObject.SetActive(true);
+            OnConnect?.Invoke();
         }
     }
 }

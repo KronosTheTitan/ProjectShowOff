@@ -9,14 +9,12 @@ namespace Managers {
         
         public void UpdateSplitScreen()
         {
-            if (GameManager.GetInstance().GetPlayers().Length >= 1)
+            if (GameManager.GetInstance().GetSplitScreenManager().NumberOfActiveCameras() >= 1)
             {
                 fourWaySplitScreen.SetActive(false);
-                
             }
-            else if (GameManager.GetInstance().GetPlayers().Length >= 2)
+            else if (GameManager.GetInstance().GetSplitScreenManager().NumberOfActiveCameras() >= 2)
             {
-                
                 fourWaySplitScreen.SetActive(true);
             }
         }

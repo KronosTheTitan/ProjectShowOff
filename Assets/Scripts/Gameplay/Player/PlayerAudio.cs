@@ -27,13 +27,13 @@ namespace Gameplay.Player
 
         private void TongueHookAudio()
         {
-            audioSource.clip = vocalSackSfx;
+            audioSource.clip = tongueHookSfx;
             audioSource.Play();
         }
 
         private void VocalSackAudio()
         {
-            audioSource.clip = tongueHookSfx;
+            audioSource.clip = vocalSackSfx;
             audioSource.Play();
         }
     }

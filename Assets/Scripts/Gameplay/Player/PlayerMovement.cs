@@ -17,7 +17,9 @@ namespace Gameplay.Player
         
         private void Update()
         {
-            if (player.GetInput().actions["RemovePlayer"].WasPerformedThisFrame())
+            if(player.GetController() == null)
+                return;
+            if (player.GetController().GetRemovePlayerButton())
                 player.RemovePlayer(player);
 
             //if the player is currently under the effect of knockback any further movement commands
@@ -38,7 +40,7 @@ namespace Gameplay.Player
         /// </summary>
         private void Move()
         {
-            Vector2 joystick = player.GetInput().actions["Move"].ReadValue<Vector2>();
+            Vector2 joystick = player.GetController().GetJoystick();
 
             rb.AddForce(transform.forward * (joystick.y * speed * Time.deltaTime), ForceMode.Impulse);
             transform.Rotate(0, joystick.x * Time.deltaTime * rotationSpeed, 0);
@@ -49,7 +51,7 @@ namespace Gameplay.Player
         /// </summary>
         private void Jump()
         {
-            if (player.GetInput().actions["Jump"].WasPerformedThisFrame())
+            if (player.GetController().GetJumpButton())
             {
                 rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -8,17 +9,24 @@ namespace Gameplay.Player
         [SerializeField] private Rigidbody rb;
 
         [SerializeField] private float jumpDuration;
+        [SerializeField] private float groundedCheckOffset;
         [SerializeField] private PlayerCombat combat;
         [SerializeField] private PlayerMovement movement;
+        [SerializeField] private Player player;
+
+        private bool ableToGroundCheck;
 
         private void Start()
         {
             movement.OnJump += Jump;
+            combat.OnKick += Kick;
+            combat.OnVocalSack += VocalSack;
+            combat.OnTonguePull += Tongue;  
         }
-
+        
         private void Update()
         {
-            if (rb.velocity.magnitude > 0)
+            if (rb.velocity.magnitude > 0 && player.IsGrounded() == true)
             {
                 animator.SetBool("isMoving", true);
             }
@@ -26,26 +34,57 @@ namespace Gameplay.Player
             {
                 animator.SetBool("isMoving",false);
             }
-        }
 
+             
+
+            // Later "isJumping" should be changed to a SetTrigger and the bool should be moved onto the Falling animation
+            if(player.IsGrounded()==true && ableToGroundCheck == true)
+            {
+                animator.SetBool("isJumping", false);
+                ableToGroundCheck = false;
+            }
+        }
+       
+        /// <summary>
+        /// We should be able to attack while jumping/falling i think
+        /// Also need falling animation
+        /// 
+        /// </summary>
         private void Jump()
         {
             animator.SetBool("isJumping", true);
+            StartCoroutine(jumpTimer());
+            
         }
 
         private void Kick()
         {
-            animator.SetBool("Kick", true);
+
+            animator.SetTrigger("Kick");
         }
 
         private void VocalSack()
         {
-            animator.SetBool("vocalSack", true);
+            animator.SetTrigger("vocalSack");
         }
 
         private void Tongue()
         {
-            animator.SetBool("tongue", true);
+            animator.SetTrigger("Tongue");
         }
+
+        private void Falling()
+        {
+            animator.SetBool("isFalling", true);
+        }
+
+        IEnumerator jumpTimer()
+        {
+
+            yield return new WaitForSeconds(groundedCheckOffset);
+            ableToGroundCheck = true;
+            
+        }
+      
     }
 }

@@ -334,8 +334,30 @@
                 },
                 {
                     "name": "",
+                    "id": "7d900ac7-dac1-4b05-8d9e-2a3bd9442347",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AddPlayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e05a137c-e46e-4245-891f-76be59934b4f",
                     "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RemovePlayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6aa67e04-594d-424e-a6ac-a6b5134082f5",
+                    "path": "<Keyboard>/delete",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

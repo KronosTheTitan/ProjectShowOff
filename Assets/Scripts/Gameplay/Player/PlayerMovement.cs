@@ -44,6 +44,7 @@ namespace Gameplay.Player
 
             rb.AddForce(transform.forward * (joystick.y * speed * Time.deltaTime), ForceMode.Impulse);
             transform.Rotate(0, joystick.x * Time.deltaTime * rotationSpeed, 0);
+            
         }
 
         /// <summary>

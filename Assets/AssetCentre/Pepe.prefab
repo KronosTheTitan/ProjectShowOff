@@ -425,7 +425,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949480461104334829}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.568947, y: 4.4229126, z: 259.83746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -957,8 +957,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0
+    height: 0
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 37
@@ -1360,7 +1360,6 @@ GameObject:
   - component: {fileID: 6295331563434687582}
   - component: {fileID: 5672887677233657087}
   - component: {fileID: 4577559791157356808}
-  - component: {fileID: 5586938268175240914}
   - component: {fileID: 8189182570255140323}
   - component: {fileID: 7808091410437009586}
   m_Layer: 0
@@ -1369,7 +1368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8811835126455261590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1430,8 +1429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172bb11ffcab1954d876b5e5b7aba8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 5586938268175240914}
-  respawnPoint: {fileID: 1509758888941331738}
+  controller: {fileID: 0}
+  respawnPoint: {fileID: 0}
   rigidbody: {fileID: 176905167184368511}
   groundLayer:
     serializedVersion: 2
@@ -1456,19 +1455,19 @@ MonoBehaviour:
   verticalRaysTongue: 3
   verticalArcTongue: 6
   tongueRange: 45
-  tongueStrength: 1
+  tongueStrength: 2
   tonguePullDuration: 1
   tongueWindup: 0
   horizontalRays: 6
   horizontalArc: 90
   verticalRays: 6
   verticalArc: 45
-  vocalSackRange: 10
-  vocalSackStrength: 1.5
+  vocalSackRange: 15
+  vocalSackStrength: 10
   vocalSackKnockbackDuration: 1
   vocalSackWindup: 0
-  kickRange: 20
-  kickStrength: 2
+  kickRange: 5
+  kickStrength: 5
   kickDamageDuration: 1
   kickWindup: 0
 --- !u!114 &6295331563434687582
@@ -1542,19 +1541,6 @@ CapsuleCollider:
   m_Height: 1.7364175
   m_Direction: 1
   m_Center: {x: -0.002950016, y: 0.7868823, z: 0.060811155}
---- !u!114 &5586938268175240914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5637782012044874689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e36699fdacd14e708bc94dd874f17806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {fileID: 5672887677233657087}
 --- !u!81 &8189182570255140323
 AudioListener:
   m_ObjectHideFlags: 0

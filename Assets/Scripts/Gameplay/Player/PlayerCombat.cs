@@ -65,7 +65,7 @@ namespace Gameplay.Player
                     Quaternion direction = horizontal * vertical;
                     
                     RaycastHit hit;
-                    Physics.Raycast(transform.position + transform.forward / 2, direction * transform.forward, out hit, vocalSackRange);
+                    Physics.Raycast(transform.position + transform.forward / 2, direction * transform.forward, out hit, tongueRange);
                     
                     if (hit.collider == null)
                         continue;

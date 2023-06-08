@@ -23,7 +23,9 @@ namespace Gameplay.Player
 
         private void Disconnect()
         {
+            targetCamera.rect = new Rect(0, 0, 0, 0);
             GameManager.GetInstance().GetSplitScreenManager().RemoveCamera(player);
+          
         }
 
         /// <summary>

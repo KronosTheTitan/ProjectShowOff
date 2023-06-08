@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 5768801543666885043}
   - component: {fileID: 5768801543666885041}
   - component: {fileID: 5768801543666885042}
+  - component: {fileID: 2449580546162141336}
+  - component: {fileID: 3927278148804506542}
+  - component: {fileID: 7335061478482894020}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -32,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5768801543666885043
 MonoBehaviour:
@@ -41,15 +44,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5768801543666885046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -59,18 +62,34 @@ MonoBehaviour:
   m_JoinAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 16e412df-92c4-4b00-8e7d-c5fce9bd9771
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings: []
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: ac81aa49-f856-479c-a574-b3d9dc11ec4b
+        m_Path: <Gamepad>/start
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: ebde1c6b-3299-4d08-95c7-6a49ffe22389
+        m_Path: <Keyboard>/enter
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 8997495926290978449, guid: 6e293df8280e88d42afb218622ba6891,
+  m_PlayerPrefab: {fileID: 7756821749369519344, guid: 066c3d86fb8bd3d46b4326e14e46f0ee,
     type: 3}
-  m_SplitScreen: 1
+  m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
   m_SplitScreenRect:
@@ -86,13 +105,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5768801543666885046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6852683afce6cad4b977a113ab3ac86d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   scoreManager: {fileID: 5768801543666885042}
+  uiManager: {fileID: 2449580546162141336}
+  splitScreenManager: {fileID: 7335061478482894020}
+  controllerManager: {fileID: 3927278148804506542}
+  hill: {fileID: 0}
+  gameStartTimeInSeconds: 0
+  gameDurationInSeconds: 180
 --- !u!114 &5768801543666885042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,5 +134,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af6ac4e568a43b4872bc641d9038065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreIntervalInSeconds: 100
-  scoreNeededForVictory: 1000
+  scoreIntervalInSeconds: 1
+  scoreNeededForVictory: 200
+--- !u!114 &2449580546162141336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768801543666885046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524839cd257bebc4183be62839a0a57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fourWaySplitScreen: {fileID: 0}
+--- !u!114 &3927278148804506542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768801543666885046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949a5517cd5f4203b16a9a27ea2baee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllers: []
+--- !u!114 &7335061478482894020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768801543666885046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228d51c2db484bebad0fc516e3d10011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraLayouts:
+  - rects:
+    - serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+  - rects:
+    - serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0.5
+      height: 1
+    - serializedVersion: 2
+      x: 0.5
+      y: 0
+      width: 0.5
+      height: 1
+  cameras: []
+  maximumNumberOfCameras: 4

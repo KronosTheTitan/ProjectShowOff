@@ -8,43 +8,42 @@ namespace Gameplay.Player
     [RequireComponent(typeof(Rigidbody))]
     public class Player : MonoBehaviour, IDamageable
     {
-        [SerializeField] private PlayerInput playerInput;
+        #region Variables
+        [SerializeField] private Controller controller;
         [SerializeField] private Transform respawnPoint;
-    
+
         [Header("Movement")]
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private float groundedDistance;
 
-        private bool _inKnockback = false;
+        [SerializeField] private bool inKnockback = false;
+        #endregion
 
+        #region Events
         public delegate void PlayerDelegate();
         public event PlayerDelegate OnScoreIncrease;
         public event PlayerDelegate OnTakeDamage;
-        public event PlayerDelegate onDeath;
+        public event PlayerDelegate OnConnect;
+        public event PlayerDelegate OnDisconnect;
+        #endregion
 
-        private void Start()
+        public Controller GetController()
         {
-            GameManager.GetInstance().AddPlayer(this);
-        }
-
-        public PlayerInput GetInput()
-        {
-            return playerInput;
+            return controller;
         }
 
         public bool IsGrounded() {
             Vector3 position = transform.position;
             Vector3 direction = Vector2.down;
-            float distance = 1f;
+            float distance = groundedDistance;
              
             Debug.DrawRay(position, direction, Color.green);
-            RaycastHit hit;
-            Physics.Raycast(position, direction, out hit, distance, groundLayer);
+            Physics.Raycast(position, direction, out RaycastHit hit, distance, groundLayer);
                  
-            if (hit.collider != null)
-                return true;
-
-            return false;
+            if (hit.collider == null)
+                return false;
+            return true;
         }
         
         /// <summary>
@@ -53,7 +52,66 @@ namespace Gameplay.Player
         /// <returns></returns>
         public bool GetInKnockback()
         {
-            return _inKnockback;
+            return inKnockback;
+        }
+
+        /// <summary>
+        /// used to notify elements like the UI that the player has received score.
+        /// </summary>
+        public void InvokeOnScoreIncrease()
+        {
+            OnScoreIncrease?.Invoke();
+        }
+
+        /// <summary>
+        /// starts the process of removing a player from the game.
+        /// </summary>
+        /// <param name="player"></param>
+        public void RemovePlayer(Player player)
+        {
+            StartCoroutine(DelayedRemovePlayer(player));
+        }
+
+        /// <summary>
+        /// Respawns the player at its spawn point.
+        /// </summary>
+        public void Respawn()
+        {
+            transform.position = respawnPoint.position;
+            transform.rotation = respawnPoint.rotation;
+
+            OnTakeDamage?.Invoke();
+
+            inKnockback = false;
+        
+            gameObject.SetActive(true);
+        }
+        
+        /// <summary>
+        /// The implementation that allows the player to take knockback.
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="source"></param>
+        /// <param name="strength"></param>
+        /// <param name="duration"></param>
+        public void TakeDamage(Vector3 direction, Player source, float strength, float duration)
+        {
+            OnTakeDamage?.Invoke();
+            StartCoroutine(Knockback(direction, strength, duration));
+        }
+
+        private IEnumerator DelayedRemovePlayer(Player player)
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+
+            player.gameObject.SetActive(false);
+            GameManager.GetInstance().RemovePlayer(player);
+            GameManager.GetInstance().GetControllerManager().RemoveControllerFromPlayer(this);
+            
+            OnDisconnect?.Invoke();
+            
+            yield return null;
         }
 
         /// <summary>
@@ -67,35 +125,17 @@ namespace Gameplay.Player
         /// <returns></returns>
         private IEnumerator Knockback(Vector3 direction, float knockbackStrength, float knockbackDuration)
         {
-            _inKnockback = true;
+            inKnockback = true;
             rigidbody.AddForce(direction * (-1 * knockbackStrength), ForceMode.Impulse);
             yield return new WaitForSeconds(knockbackDuration);
-            _inKnockback = false;
-        }
-        
-        public void TakeDamage(Vector3 direction, Player source, float strength, float duration)
-        {
-            OnTakeDamage?.Invoke();
-            StartCoroutine(Knockback(direction, strength, duration));
+            inKnockback = false;
         }
 
-        public void InvokeOnScoreIncrease()
+        public void Activate(Controller iController)
         {
-            OnScoreIncrease?.Invoke();
-        }
-
-        /// <summary>
-        /// Respawns the player at its spawn point.
-        /// </summary>
-        public void Respawn()
-        {
-            transform.position = respawnPoint.position;
-            transform.rotation = respawnPoint.rotation;
-            OnTakeDamage?.Invoke();
-
-            _inKnockback = false;
-        
+            controller = iController;
             gameObject.SetActive(true);
+            OnConnect?.Invoke();
         }
     }
 }

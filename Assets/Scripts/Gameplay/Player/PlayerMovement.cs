@@ -2,6 +2,7 @@
 
 namespace Gameplay.Player
 {
+    [RequireComponent(typeof(Player))]
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private Player player;
@@ -16,7 +17,14 @@ namespace Gameplay.Player
         
         private void Update()
         {
-            if(player.GetInKnockback())
+            if(player.GetController() == null)
+                return;
+            if (player.GetController().GetRemovePlayerButton())
+                player.RemovePlayer(player);
+
+            //if the player is currently under the effect of knockback any further movement commands
+            //are ignored.
+            if (player.GetInKnockback())
                 return;
             
             Move();
@@ -27,18 +35,27 @@ namespace Gameplay.Player
             Jump();
         }
 
+        /// <summary>
+        /// Moves the player based on the movement input.
+        /// </summary>
         private void Move()
         {
-            transform.position+=(transform.forward * (player.GetInput().actions["Move"].ReadValue<Vector2>().y * speed * Time.deltaTime));
-            transform.Rotate(0, player.GetInput().actions["Move"].ReadValue<Vector2>().x * Time.deltaTime * rotationSpeed, 0);
+            Vector2 joystick = player.GetController().GetJoystick();
+
+            rb.AddForce(transform.forward * (joystick.y * speed * Time.deltaTime), ForceMode.Impulse);
+            transform.Rotate(0, joystick.x * Time.deltaTime * rotationSpeed, 0);
+            
         }
 
+        /// <summary>
+        /// Shoots the player into the air when the Jump button is pressed.
+        /// </summary>
         private void Jump()
         {
-            if (player.GetInput().actions["Jump"].WasPerformedThisFrame())
+            if (player.GetController().GetJumpButton())
             {
                 rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
-                
+
                 OnJump?.Invoke();
             }
         }

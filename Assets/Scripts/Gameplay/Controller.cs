@@ -14,9 +14,12 @@ namespace Gameplay
             GameManager.GetInstance().GetControllerManager().GrantControlOfPlayer(this);
         }
 
-        public Vector2 GetJoystick()
+        public Vector2 GetJoystickLeft()
         {
             return input.actions["Move"].ReadValue<Vector2>();
+        }public Vector2 GetJoystickRight()
+        {
+            return input.actions["Camera"].ReadValue<Vector2>();
         }
         public bool GetJumpButton()
         {

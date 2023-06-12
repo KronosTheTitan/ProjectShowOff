@@ -8,6 +8,7 @@ namespace Gameplay.Player
         [SerializeField] private Player player;
         [SerializeField] private float speed;
         [SerializeField] private float rotationSpeed;
+        [SerializeField] private CameraController camera;
         [SerializeField] private float jumpHeight;
         [SerializeField] private Rigidbody rb;
 
@@ -40,11 +41,14 @@ namespace Gameplay.Player
         /// </summary>
         private void Move()
         {
-            Vector2 joystick = player.GetController().GetJoystick();
+            Vector3 joystick = player.GetController().GetJoystickLeft();
 
-            rb.AddForce(transform.forward * (joystick.y * speed * Time.deltaTime), ForceMode.Impulse);
-            transform.Rotate(0, joystick.x * Time.deltaTime * rotationSpeed, 0);
+            Vector3 forward = camera.transform.forward;
+            Vector3 right = camera.transform.right;
             
+            rb.AddForce((joystick.x * right + joystick.y * forward) * (speed * Time.deltaTime), ForceMode.Acceleration);
+
+            transform.LookAt(transform.position + (joystick.x * right + joystick.y * forward));
         }
 
         /// <summary>

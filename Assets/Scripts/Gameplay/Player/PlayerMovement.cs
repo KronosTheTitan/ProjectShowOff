@@ -7,8 +7,8 @@ namespace Gameplay.Player
     {
         [SerializeField] private Player player;
         [SerializeField] private float speed;
-        [SerializeField] private float rotationSpeed;
-        [SerializeField] private CameraController camera;
+        [SerializeField] private float rotationSmoothing = 5;
+        [SerializeField] private CameraController cameraController;
         [SerializeField] private float jumpHeight;
         [SerializeField] private Rigidbody rb;
 
@@ -43,12 +43,16 @@ namespace Gameplay.Player
         {
             Vector3 joystick = player.GetController().GetJoystickLeft();
 
-            Vector3 forward = camera.transform.forward;
-            Vector3 right = camera.transform.right;
+            Vector3 forward = cameraController.transform.forward;
+            Vector3 right = cameraController.transform.right;
             
             rb.AddForce((joystick.x * right + joystick.y * forward) * (speed * Time.deltaTime), ForceMode.Acceleration);
 
-            transform.LookAt(transform.position + (joystick.x * right + joystick.y * forward));
+            if(joystick.magnitude < Controller.CONTROLLER_DEADZONE)
+                return;
+            
+            Quaternion desiredRotation = Quaternion.LookRotation(joystick.x * right + joystick.y * forward, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, rotationSmoothing * Time.deltaTime);
         }
 
         /// <summary>

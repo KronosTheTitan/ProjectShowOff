@@ -7,6 +7,7 @@ namespace Gameplay
 {
     public class Controller : MonoBehaviour
     {
+        public const float CONTROLLER_DEADZONE = 0.1f;
         [SerializeField] private PlayerInput input;
 
         private void Start()

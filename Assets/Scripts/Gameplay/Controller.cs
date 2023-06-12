@@ -7,6 +7,7 @@ namespace Gameplay
 {
     public class Controller : MonoBehaviour
     {
+        public const float CONTROLLER_DEADZONE = 0.1f;
         [SerializeField] private PlayerInput input;
 
         private void Start()
@@ -14,9 +15,12 @@ namespace Gameplay
             GameManager.GetInstance().GetControllerManager().GrantControlOfPlayer(this);
         }
 
-        public Vector2 GetJoystick()
+        public Vector2 GetJoystickLeft()
         {
             return input.actions["Move"].ReadValue<Vector2>();
+        }public Vector2 GetJoystickRight()
+        {
+            return input.actions["Camera"].ReadValue<Vector2>();
         }
         public bool GetJumpButton()
         {

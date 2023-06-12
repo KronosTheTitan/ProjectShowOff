@@ -23,11 +23,8 @@ namespace UserInterface
 
         private void UpdateScore()
         {
-           
             score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();
             StartCoroutine(ScoreTick(tickTime));
-            
-            
         }
 
         IEnumerator ScoreTick(float tickTime)

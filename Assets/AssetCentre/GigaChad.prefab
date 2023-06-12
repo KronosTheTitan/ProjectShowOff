@@ -1114,7 +1114,6 @@ GameObject:
   - component: {fileID: 3257366601789245821}
   - component: {fileID: 6295331563434687582}
   - component: {fileID: 4577559791157356808}
-  - component: {fileID: 8189182570255140323}
   - component: {fileID: 7808091410437009586}
   m_Layer: 0
   m_Name: GigaChadPlayer
@@ -1123,15 +1122,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!224 &8811835126455261590
-RectTransform:
+--- !u!4 &8811835126455261590
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637782012044874689}
   m_LocalRotation: {x: -0, y: 0.99991095, z: -0, w: -0.0133504765}
-  m_LocalPosition: {x: 0, y: 0, z: -9.9832}
+  m_LocalPosition: {x: -6.267643, y: 2.0598125, z: -9.9832}
   m_LocalScale: {x: 3.5802197, y: 3.5802195, z: 3.5802197}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1139,11 +1138,6 @@ RectTransform:
   m_Father: {fileID: 1452104847885385401}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 181.53, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.267643, y: 2.0598125}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!54 &176905167184368511
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1152,8 +1146,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637782012044874689}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 1
+  m_Mass: 2
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1237,8 +1231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7862598564005173854}
-  speed: 30
-  rotationSpeed: 250
+  speed: 2500
+  rotationSmoothing: 5
+  cameraController: {fileID: 8513743924412069252}
   jumpHeight: 15
   rb: {fileID: 176905167184368511}
 --- !u!136 &4577559791157356808
@@ -1264,14 +1259,6 @@ CapsuleCollider:
   m_Height: 1.7364175
   m_Direction: 1
   m_Center: {x: -0.002950016, y: 0.7868823, z: 0.060811155}
---- !u!81 &8189182570255140323
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5637782012044874689}
-  m_Enabled: 1
 --- !u!82 &7808091410437009586
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1902,15 +1889,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6605226455525657483}
-  m_LocalRotation: {x: 0.00037990682, y: 0.99950594, z: 0.028453905, w: -0.013345069}
-  m_LocalPosition: {x: -5.8, y: 8.6, z: -2.6}
-  m_LocalScale: {x: 3.5802197, y: 3.5802197, z: 3.58022}
+  m_LocalRotation: {x: -0, y: 0.99991095, z: -0, w: -0.0133504765}
+  m_LocalPosition: {x: -6.267643, y: 2.0598125, z: -9.9832}
+  m_LocalScale: {x: 3.5802197, y: 3.5802195, z: 3.5802197}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 455766729309440327}
   m_Father: {fileID: 1452104847885385401}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: -3.261, y: -178.47, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 181.53, z: 0}
 --- !u!114 &8513743924412069252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1924,8 +1911,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7862598564005173854}
+  combat: {fileID: 3257366601789245821}
   smoothing: 3.69
   targetCamera: {fileID: 2158683827656682029}
+  rotationSpeed: 150
 --- !u!1 &6647922058206659247
 GameObject:
   m_ObjectHideFlags: 0

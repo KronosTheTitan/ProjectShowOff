@@ -72,6 +72,16 @@ namespace Gameplay.Player
             StartCoroutine(DelayedRemovePlayer(player));
         }
 
+        
+        public void SetRespawnPoint(Transform newSpawn)
+        {
+            respawnPoint = newSpawn;
+
+
+        }
+
+
+
         /// <summary>
         /// Respawns the player at its spawn point.
         /// </summary>
@@ -135,6 +145,7 @@ namespace Gameplay.Player
         {
             controller = iController;
             gameObject.SetActive(true);
+            Respawn();
             OnConnect?.Invoke();
         }
     }

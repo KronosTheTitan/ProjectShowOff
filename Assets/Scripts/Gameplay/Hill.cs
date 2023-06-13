@@ -46,11 +46,9 @@ namespace Gameplay
             if(playersOnHill.Count == 0)
                 return;
             
-            if(playersOnHill.Count > MaximumPlayersOnHill)
-                return;
+            if(playersOnHill.Count == MaximumPlayersOnHill)
+                GameManager.GetInstance().GetScoreManager().AddScore(playersOnHill[FirstPlayerInList], scorePerTick);
 
-            GameManager.GetInstance().GetScoreManager().AddScore(playersOnHill[FirstPlayerInList], scorePerTick);
-            
             playersOnHill.Clear();
         }
 

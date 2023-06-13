@@ -42,5 +42,10 @@ namespace Gameplay
         {
             return input.actions["TonguePull"].WasPerformedThisFrame();
         }
+
+        public bool GetResetToMainMenuButton()
+        {
+            return input.actions["ResetToMainMenu"].WasPerformedThisFrame();
+        }
     }
 }

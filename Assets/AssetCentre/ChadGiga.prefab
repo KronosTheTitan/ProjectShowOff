@@ -374,7 +374,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 069d4e06651be1f479ff2298e6ab3210, type: 2}
+  - {fileID: 2100000, guid: 795e85a175712ce46abbe68a8173902d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -852,7 +852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3727314145001460279
 Transform:
   m_ObjectHideFlags: 0
@@ -877,8 +877,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3586734429133257813}
   serializedVersion: 4
-  m_Mass: 2
-  m_Drag: 2
+  m_Mass: 4
+  m_Drag: 4
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -914,7 +914,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundedDistance: 1.6
+  groundedDistance: 1
   inKnockback: 0
 --- !u!114 &6919150779158765752
 MonoBehaviour:
@@ -934,19 +934,19 @@ MonoBehaviour:
   verticalRaysTongue: 3
   verticalArcTongue: 6
   tongueRange: 45
-  tongueStrength: 2
+  tongueStrength: 15
   tonguePullDuration: 1
   tongueWindup: 0
   horizontalRays: 6
-  horizontalArc: 90
+  horizontalArc: 360
   verticalRays: 6
   verticalArc: 45
-  vocalSackRange: 15
-  vocalSackStrength: 10
+  vocalSackRange: 10
+  vocalSackStrength: 25
   vocalSackKnockbackDuration: 1
   vocalSackWindup: 0
   kickRange: 5
-  kickStrength: 5
+  kickStrength: 50
   kickDamageDuration: 1
   kickWindup: 0
 --- !u!114 &3474762190914989284
@@ -962,10 +962,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2855452472496899812}
-  speed: 2500
+  speed: 2800
   rotationSmoothing: 5
   cameraController: {fileID: 8317356086484320564}
-  jumpHeight: 50
+  jumpHeight: 130
   rb: {fileID: 9188255316658938257}
 --- !u!136 &1106999185345366416
 CapsuleCollider:
@@ -1239,7 +1239,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4248368400166381724}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.67, y: 3.67, z: 257.9928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1248,7 +1248,7 @@ Transform:
   - {fileID: 5884331917840607641}
   - {fileID: 6001379297851557871}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4575094779010926702
 GameObject:

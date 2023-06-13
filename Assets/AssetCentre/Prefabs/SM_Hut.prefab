@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 6886863779185853631}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6348306785725440852
 PrefabInstance:
@@ -134,6 +134,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_HutV2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aa2a082d764ad17428bd6c4580cbfc5d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

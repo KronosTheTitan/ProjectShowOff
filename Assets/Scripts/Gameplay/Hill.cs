@@ -61,5 +61,11 @@ namespace Gameplay
             
             playersOnHill.Add(player);
         }
+
+        public void SetHillSites(GameObject[] hillList)
+        {
+            hillSites = hillList;
+
+        }
     }
 }

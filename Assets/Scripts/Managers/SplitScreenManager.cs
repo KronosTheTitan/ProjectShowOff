@@ -29,6 +29,7 @@ namespace Managers
         [SerializeField] private CameraLayout[] cameraLayouts;
         [SerializeField] private List<Camera> cameras;
         [SerializeField] private int maximumNumberOfCameras = 4;
+        [SerializeField] private UIManager uiManager;
 
         /// <summary>
         /// 
@@ -52,6 +53,7 @@ namespace Managers
             _playerCameraTable.Add(player,iCamera);
             
             UpdateCameraLayout();
+            uiManager.UpdateSplitScreen();
 
             return true;
         }
@@ -88,7 +90,7 @@ namespace Managers
         {
             for (int i = 0; i < cameras.Count; i++)
             {
-                cameras[i].rect = cameraLayouts[cameras.Count - 1].rects[i];
+                cameras[i].rect = cameraLayouts[cameras.Count - 1].rects[i];         
             }
         }
     }

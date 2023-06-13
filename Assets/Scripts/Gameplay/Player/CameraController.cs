@@ -18,8 +18,7 @@ namespace Gameplay.Player
             player.OnConnect += Connect;
             player.OnDisconnect += Disconnect;
 
-            combat.OnKick += CenterCamera;
-            combat.OnVocalSack += CenterCamera;
+            
             combat.OnTonguePull += CenterCamera;
         }
 

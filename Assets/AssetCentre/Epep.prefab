@@ -1365,7 +1365,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 739162d92f608ba4a993768c9120cae3, type: 2}
+  - {fileID: 2100000, guid: e54bf9deed1fe4a4ca85019b8323e928, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2107,7 +2107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8427472365697502225}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.568947, y: 4.4229126, z: 259.83746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2116,7 +2116,7 @@ Transform:
   - {fileID: 7075922819592283966}
   - {fileID: 6788811671040365671}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8591563107310404402
 GameObject:
@@ -2235,7 +2235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &888131037105465505
 Transform:
   m_ObjectHideFlags: 0
@@ -2260,8 +2260,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9105003617176655886}
   serializedVersion: 4
-  m_Mass: 2
-  m_Drag: 2
+  m_Mass: 4
+  m_Drag: 4
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -2297,7 +2297,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundedDistance: 1.6
+  groundedDistance: 1
   inKnockback: 0
 --- !u!114 &3918491059249310998
 MonoBehaviour:
@@ -2317,19 +2317,19 @@ MonoBehaviour:
   verticalRaysTongue: 3
   verticalArcTongue: 6
   tongueRange: 45
-  tongueStrength: 1
+  tongueStrength: 15
   tonguePullDuration: 1
   tongueWindup: 0
   horizontalRays: 6
-  horizontalArc: 90
+  horizontalArc: 360
   verticalRays: 6
   verticalArc: 45
   vocalSackRange: 10
-  vocalSackStrength: 1.5
+  vocalSackStrength: 25
   vocalSackKnockbackDuration: 1
   vocalSackWindup: 0
-  kickRange: 20
-  kickStrength: 2
+  kickRange: 5
+  kickStrength: 50
   kickDamageDuration: 1
   kickWindup: 0
 --- !u!114 &7441321344074874820
@@ -2345,10 +2345,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3272303611859152429}
-  speed: 2500
+  speed: 2800
   rotationSmoothing: 5
   cameraController: {fileID: 886586523921421305}
-  jumpHeight: 50
+  jumpHeight: 130
   rb: {fileID: 2402640609859441733}
 --- !u!136 &6320025824165405202
 CapsuleCollider:

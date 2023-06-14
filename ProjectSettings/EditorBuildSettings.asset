@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
+  - enabled: 1
+    path: Assets/Scenes/PlayTest5.unity
+    guid: a0a317afb826d6a4493e013ba401ab28
   m_configObjects: {}

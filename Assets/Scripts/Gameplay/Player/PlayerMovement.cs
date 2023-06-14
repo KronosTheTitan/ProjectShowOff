@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -11,6 +12,8 @@ namespace Gameplay.Player
         [SerializeField] private CameraController cameraController;
         [SerializeField] private float jumpHeight;
         [SerializeField] private Rigidbody rb;
+
+        [SerializeField] private MapManager mapManager;
 
         public delegate void MovementDelegate();
 
@@ -34,6 +37,11 @@ namespace Gameplay.Player
                 return;
 
             Jump();
+
+            if (player.GetController().GetResetToMainMenuButton())
+            {
+                mapManager.ResetToMainMenu();
+            }
         }
 
         /// <summary>

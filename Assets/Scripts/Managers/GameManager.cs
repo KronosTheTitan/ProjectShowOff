@@ -39,6 +39,7 @@ namespace Managers
         [SerializeField] private ControllerManager controllerManager;
         [SerializeField] private Hill hill;
 
+
         [SerializeField] private float gameStartTimeInSeconds;
         [SerializeField] private float gameDurationInSeconds;
 
@@ -123,7 +124,24 @@ namespace Managers
             
             HandleVictory(highestScoringPlayer);
         }
-        
+
+        public Player GetHighestScoringPlayer()
+        {
+            Player highestScoringPlayer = null;
+            int highestScore = int.MinValue;
+
+            foreach (Player player in players)
+            {
+                if (highestScore > scoreManager.GetScore(player))
+                    continue;
+
+                highestScore = scoreManager.GetScore(player);
+                highestScoringPlayer = player;
+                
+            }
+            return highestScoringPlayer;
+        }
+   
         public void ReplayGame()
         {
             //reloads the scene
@@ -146,7 +164,7 @@ namespace Managers
 
         public void HandleVictory(Player winner)
         {
-            OnGameOver?.Invoke(winner);
+            OnGameOver?.Invoke(winner);          
         }
     }
 }

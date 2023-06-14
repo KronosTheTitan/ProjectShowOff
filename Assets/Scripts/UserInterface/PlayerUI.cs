@@ -12,13 +12,12 @@ namespace UserInterface
     {
         [SerializeField] private Player player;
         [SerializeField] private TMP_Text score;
-        [SerializeField] private GameObject ScoreTickBorder;
+        [SerializeField] private GameObject scoreTickBorder;
         [SerializeField] private float tickTime = 0.3f ;
 
         private void Start()
         {
             player.OnScoreIncrease += UpdateScore;
-            
         }
 
         private void UpdateScore()
@@ -29,9 +28,9 @@ namespace UserInterface
 
         IEnumerator ScoreTick(float tickTime)
         {
-            ScoreTickBorder.gameObject.SetActive(true);
+            scoreTickBorder.gameObject.SetActive(true);
             yield return new WaitForSeconds(tickTime);
-            ScoreTickBorder.gameObject.SetActive(false);
+            scoreTickBorder.gameObject.SetActive(false);
         }
     }
 }

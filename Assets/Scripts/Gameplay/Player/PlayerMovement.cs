@@ -13,8 +13,6 @@ namespace Gameplay.Player
         [SerializeField] private float jumpHeight;
         [SerializeField] private Rigidbody rb;
 
-        [SerializeField] private MapManager mapManager;
-
         public delegate void MovementDelegate();
 
         public event MovementDelegate OnJump;
@@ -40,7 +38,7 @@ namespace Gameplay.Player
 
             if (player.GetController().GetResetToMainMenuButton())
             {
-                mapManager.ResetToMainMenu();
+                GameManager.GetInstance().GetMapManager().ResetToMainMenu();
             }
         }
 

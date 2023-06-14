@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2449580546162141336}
   - component: {fileID: 3927278148804506542}
   - component: {fileID: 7335061478482894020}
+  - component: {fileID: 6632872269991056888}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5768801543666885043
 MonoBehaviour:
@@ -44,7 +45,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5768801543666885046}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_NotificationBehavior: 0
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 1
+  m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5768801543666885046}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6852683afce6cad4b977a113ab3ac86d, type: 3}
   m_Name: 
@@ -119,6 +120,7 @@ MonoBehaviour:
   uiManager: {fileID: 2449580546162141336}
   splitScreenManager: {fileID: 7335061478482894020}
   controllerManager: {fileID: 3927278148804506542}
+  mapManager: {fileID: 0}
   hill: {fileID: 0}
   gameStartTimeInSeconds: 0
   gameDurationInSeconds: 180
@@ -149,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fourWaySplitScreen: {fileID: 0}
+  twoWaySplitScreen: {fileID: 0}
+  threeWaySplitScreen: {fileID: 0}
 --- !u!114 &3927278148804506542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,5 +196,125 @@ MonoBehaviour:
       y: 0
       width: 0.5
       height: 1
+  - rects:
+    - serializedVersion: 2
+      x: 0
+      y: 0.5
+      width: 0.5
+      height: 0.5
+    - serializedVersion: 2
+      x: 0.5
+      y: 0.5
+      width: 0.5
+      height: 0.5
+    - serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 0.5
+  - rects:
+    - serializedVersion: 2
+      x: 0
+      y: 0.5
+      width: 0.5
+      height: 0.5
+    - serializedVersion: 2
+      x: 0.5
+      y: 0.5
+      width: 0.5
+      height: 0.5
+    - serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0.5
+      height: 0.5
+    - serializedVersion: 2
+      x: 0.5
+      y: 0
+      width: 0.5
+      height: 0.5
   cameras: []
   maximumNumberOfCameras: 4
+  uiManager: {fileID: 2449580546162141336}
+--- !u!114 &6632872269991056888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768801543666885046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313b4b03c0990c40a59b8b136aec880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuCamera: {fileID: 0}
+  SpawnPoints:
+  - pointname: LilyPad
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - pointname: Village
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - pointname: River
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - pointname: Bog
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - pointname: MainMenu
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - pointname: Victory
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  HillLocations:
+  - pointname: LilyPad
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - pointname: Village
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - pointname: River
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - pointname: Marshes
+    points:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  hill: {fileID: 0}
+  manager: {fileID: 5768801543666885041}
+  uiManager: {fileID: 2449580546162141336}
+  winnerCamera: {fileID: 0}
+  podium: {fileID: 0}
+  TwowaySplitScreen: {fileID: 0}
+  ThreeWaySplitScreen: {fileID: 0}
+  FourWaySplitScreen: {fileID: 0}
+  timeRemaining: 180
+  timerIsRunning: 0
+  timeText: {fileID: 0}

@@ -1839,6 +1839,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f03a992cffae19b46971bcbe4f719894, type: 3}
+--- !u!1 &72651210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5782055547918282949, guid: f03a992cffae19b46971bcbe4f719894,
+    type: 3}
+  m_PrefabInstance: {fileID: 72651209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &79409990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3459,6 +3465,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 181570267}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &181570269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5782055547918282949, guid: f03a992cffae19b46971bcbe4f719894,
+    type: 3}
+  m_PrefabInstance: {fileID: 181570267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &181731225
 GameObject:
   m_ObjectHideFlags: 0
@@ -4999,6 +5011,12 @@ PrefabInstance:
 --- !u!4 &270553721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6590503819422902911, guid: f03a992cffae19b46971bcbe4f719894,
+    type: 3}
+  m_PrefabInstance: {fileID: 270553720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &270553722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5782055547918282949, guid: f03a992cffae19b46971bcbe4f719894,
     type: 3}
   m_PrefabInstance: {fileID: 270553720}
   m_PrefabAsset: {fileID: 0}
@@ -15018,7 +15036,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6632872268363224096}
+        m_TargetAssemblyTypeName: Managers.MapManager, Assembly-CSharp
+        m_MethodName: InitializeMap
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   selectionIndicator: {fileID: 1705192762}
   left: {fileID: 0}
   right: {fileID: 1952832047}
@@ -16120,6 +16150,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f03a992cffae19b46971bcbe4f719894, type: 3}
+--- !u!1 &841389443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5782055547918282949, guid: f03a992cffae19b46971bcbe4f719894,
+    type: 3}
+  m_PrefabInstance: {fileID: 841389442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &847885203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24927,6 +24963,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1336851895}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1336851897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5782055547918282949, guid: f03a992cffae19b46971bcbe4f719894,
+    type: 3}
+  m_PrefabInstance: {fileID: 1336851895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1342150980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28161,6 +28203,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1503987863}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1503987865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5782055547918282949, guid: f03a992cffae19b46971bcbe4f719894,
+    type: 3}
+  m_PrefabInstance: {fileID: 1503987863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1506859304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1518774861474887891, guid: 09723fccdf65a5c48884212a4ceb7ab1,
@@ -30068,7 +30116,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6632872268363224096}
+        m_TargetAssemblyTypeName: Managers.MapManager, Assembly-CSharp
+        m_MethodName: InitializeMap
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   selectionIndicator: {fileID: 990677824}
   left: {fileID: 1890064425}
   right: {fileID: 0}
@@ -35597,7 +35657,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6632872268363224096}
+        m_TargetAssemblyTypeName: Managers.MapManager, Assembly-CSharp
+        m_MethodName: InitializeMap
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   selectionIndicator: {fileID: 1218763962}
   left: {fileID: 802771307}
   right: {fileID: 0}
@@ -35886,8 +35958,8 @@ Transform:
   - {fileID: 738368119}
   - {fileID: 1812396384}
   - {fileID: 1200900333}
-  - {fileID: 1730990027}
   - {fileID: 706106531}
+  - {fileID: 1730990027}
   m_Father: {fileID: 209423451}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36220,6 +36292,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1974596873}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1974596875 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5782055547918282949, guid: f03a992cffae19b46971bcbe4f719894,
+    type: 3}
+  m_PrefabInstance: {fileID: 1974596873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1980098910
 GameObject:
   m_ObjectHideFlags: 0
@@ -36468,6 +36546,12 @@ PrefabInstance:
 --- !u!4 &2008487892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6590503819422902911, guid: f03a992cffae19b46971bcbe4f719894,
+    type: 3}
+  m_PrefabInstance: {fileID: 2008487891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2008487893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5782055547918282949, guid: f03a992cffae19b46971bcbe4f719894,
     type: 3}
   m_PrefabInstance: {fileID: 2008487891}
   m_PrefabAsset: {fileID: 0}
@@ -39513,7 +39597,7 @@ MonoBehaviour:
   uiManager: {fileID: 2449580546716395840}
   splitScreenManager: {fileID: 7335061477961800988}
   controllerManager: {fileID: 3927278149324911222}
-  mapManager: {fileID: 0}
+  mapManager: {fileID: 6632872268363224096}
   hill: {fileID: 738368120}
   gameStartTimeInSeconds: 0
   gameDurationInSeconds: 180
@@ -39733,12 +39817,51 @@ MonoBehaviour:
     - {fileID: 865082146}
     - {fileID: 2024670865}
     - {fileID: 1621277805}
+  - pointname: Village
+    points:
+    - {fileID: 497687380}
+    - {fileID: 344719313}
+    - {fileID: 184709834}
+    - {fileID: 79640925}
+  - pointname: River
+    points:
+    - {fileID: 2044600026}
+    - {fileID: 385942257}
+    - {fileID: 1656594921}
+    - {fileID: 976807064}
+  - pointname: Marshes
+    points:
+    - {fileID: 1045045108}
+    - {fileID: 809025081}
+    - {fileID: 1524647865}
+    - {fileID: 1063744047}
+  - pointname: MainMenu
+    points:
+    - {fileID: 434756886}
+    - {fileID: 434756886}
+    - {fileID: 434756886}
+    - {fileID: 434756886}
   hillLocations:
   - pointname: Lilypads
     points:
     - {fileID: 1414464705}
     - {fileID: 804456448}
     - {fileID: 181303908}
+  - pointname: Village
+    points:
+    - {fileID: 1974596875}
+    - {fileID: 1336851897}
+    - {fileID: 2008487893}
+  - pointname: River
+    points:
+    - {fileID: 841389443}
+    - {fileID: 72651210}
+    - {fileID: 7369550758763973626}
+  - pointname: Marshes
+    points:
+    - {fileID: 270553722}
+    - {fileID: 181570269}
+    - {fileID: 1503987865}
   hill: {fileID: 738368120}
   manager: {fileID: 5768801545259982953}
   uiManager: {fileID: 2449580546716395840}

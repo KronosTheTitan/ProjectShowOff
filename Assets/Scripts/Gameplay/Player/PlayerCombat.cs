@@ -7,6 +7,11 @@ namespace Gameplay.Player
     public class PlayerCombat : MonoBehaviour
     {
         [SerializeField] private Player player;
+
+        [SerializeField] private float lastTonguePull;
+        [SerializeField] private float lastVocalSack;
+        [SerializeField] private float tonguePullCooldownSeconds;
+        [SerializeField] private float vocalSackCooldownSeconds;
         
         public delegate void CombatDelegate();
 
@@ -55,6 +60,8 @@ namespace Gameplay.Player
         /// </summary>
         public void TongueHook()
         {
+            if(RemainingTonguePullCooldown() > 0)
+                return;
             for (float x = -(horizontalArc / 2); x < horizontalArcTongue/2; x += horizontalArcTongue/horizontalRaysTongue)
             {
                 Quaternion horizontal = Quaternion.AngleAxis(x , transform.up);
@@ -82,6 +89,11 @@ namespace Gameplay.Player
             }
         }
 
+        public float RemainingTonguePullCooldown()
+        {
+            return lastTonguePull + tonguePullCooldownSeconds - Time.time;
+        }
+
         [Header("Vocal Sack")]
         [SerializeField] private int horizontalRays = 6; 
         [SerializeField] private int horizontalArc = 90; 
@@ -91,8 +103,15 @@ namespace Gameplay.Player
         [SerializeField] private float vocalSackStrength = 1;
         [SerializeField] private float vocalSackKnockbackDuration = 1;
         [SerializeField] private float vocalSackWindup;
+
+        public float RemainingVocalSackCooldown()
+        {
+            return lastVocalSack + vocalSackCooldownSeconds - Time.time;
+        }
         public void VocalSack()
         {
+            if(RemainingVocalSackCooldown() > 0)
+                return;
             List<IDamageable> previousHits = new List<IDamageable>();
 
             for (float x = -(horizontalArc / 2); x < horizontalArc/2; x += horizontalArc/horizontalRays)

@@ -49,7 +49,10 @@ namespace Gameplay.Player
             if(player.GetController() == null)
                 return;
             
-            transform.rotation *= Quaternion.AngleAxis(player.GetController().GetJoystickRight().x * Time.deltaTime * rotationSpeed, Vector3.up);
+            Quaternion horizontal = Quaternion.AngleAxis(player.GetController().GetJoystickRight().x * Time.deltaTime * rotationSpeed, Vector3.up);
+            Quaternion vertical = Quaternion.AngleAxis(player.GetController().GetJoystickRight().y * Time.deltaTime * rotationSpeed, Vector3.right);
+
+            transform.rotation *= horizontal;
         }
     }
 }

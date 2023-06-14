@@ -2348,8 +2348,9 @@ MonoBehaviour:
   speed: 2800
   rotationSmoothing: 5
   cameraController: {fileID: 886586523921421305}
-  jumpHeight: 130
+  jumpHeight: 150
   rb: {fileID: 2402640609859441733}
+  mapManager: {fileID: 0}
 --- !u!136 &6320025824165405202
 CapsuleCollider:
   m_ObjectHideFlags: 0

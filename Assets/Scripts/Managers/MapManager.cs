@@ -14,8 +14,8 @@ namespace Managers
 
         [SerializeField] private Camera mainMenuCamera;
 
-        [SerializeField] private List<ZonePoints> SpawnPoints;
-        [SerializeField] private List<HillPoints> HillLocations;
+        [SerializeField] private List<ZonePoints> spawnPoints;
+        [SerializeField] private List<HillPoints> hillLocations;
 
         [SerializeField] private Hill hill;
         [SerializeField] private GameManager manager;
@@ -24,9 +24,9 @@ namespace Managers
         [SerializeField] private Camera winnerCamera;
         [SerializeField] private GameObject podium;
 
-        [SerializeField] private GameObject TwowaySplitScreen;
-        [SerializeField] private GameObject ThreeWaySplitScreen;
-        [SerializeField] private GameObject FourWaySplitScreen;
+        [SerializeField] private GameObject twoWaySplitScreen;
+        [SerializeField] private GameObject threeWaySplitScreen;
+        [SerializeField] private GameObject fourWaySplitScreen;
 
         public float timeRemaining = 180;
         public bool timerIsRunning = false;
@@ -41,7 +41,7 @@ namespace Managers
 
             RespawnActivePlayers();
 
-            manager.OnGameOver += gameOverScreen;
+            manager.OnGameOver += GameOverScreen;
 
         }
 
@@ -60,7 +60,7 @@ namespace Managers
                     Debug.Log("Time has run out!");
                     timeRemaining = 0;
                     timerIsRunning = false;
-                    gameOverScreen(GameManager.GetInstance().GetHighestScoringPlayer());
+                    GameOverScreen(GameManager.GetInstance().GetHighestScoringPlayer());
                 }
 
             }
@@ -72,7 +72,7 @@ namespace Managers
             Player[] players = GameManager.GetInstance().GetPlayers();
             for (int i = 0; i < players.Length; i++)
             {
-                GameManager.GetInstance().GetPlayer(i).SetRespawnPoint(SpawnPoints[zone].points[i].transform);
+                GameManager.GetInstance().GetPlayer(i).SetRespawnPoint(spawnPoints[zone].points[i].transform);
             }
             SetHillLocations(zone);
         }
@@ -86,7 +86,6 @@ namespace Managers
                 {
                     GameManager.GetInstance().GetPlayer(i).Respawn();
                 }
-
             }
         }
 
@@ -94,7 +93,7 @@ namespace Managers
 
         public void SetHillLocations(int zone)
         {
-            hill.SetHillSites(HillLocations[zone].points);
+            hill.SetHillSites(hillLocations[zone].points);
 
         }
 
@@ -118,7 +117,7 @@ namespace Managers
             GameManager.GetInstance().ReplayGame();
         }
 
-        private void gameOverScreen(Player winner)
+        private void GameOverScreen(Player winner)
         {
             winner = GameManager.GetInstance().GetHighestScoringPlayer();
             winnerCamera.gameObject.SetActive(true);
@@ -129,11 +128,11 @@ namespace Managers
         IEnumerator VictoryTime()
         {
             
-            TwowaySplitScreen.SetActive(false);
+            twoWaySplitScreen.SetActive(false);
             
-            ThreeWaySplitScreen.SetActive(false);
+            threeWaySplitScreen.SetActive(false);
            
-            FourWaySplitScreen.SetActive(false);
+            fourWaySplitScreen.SetActive(false);
             
             yield return new WaitForSeconds(10f);
             winnerCamera.gameObject.SetActive(false);

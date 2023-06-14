@@ -39,5 +39,10 @@ namespace Managers
         {
             _playerControllerTable.Add(player, null);
         }
+
+        public Controller GetPlayerOne()
+        {
+            return controllers[0];
+        }
     }
 }

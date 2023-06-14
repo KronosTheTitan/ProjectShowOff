@@ -33,10 +33,13 @@ namespace Managers
         #region Variables
 
         [SerializeField] private Player[] players;
+        
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private UIManager uiManager;
         [SerializeField] private SplitScreenManager splitScreenManager;
         [SerializeField] private ControllerManager controllerManager;
+        [SerializeField] private MapManager mapManager;
+        
         [SerializeField] private Hill hill;
 
 
@@ -96,6 +99,11 @@ namespace Managers
         public ControllerManager GetControllerManager()
         {
             return controllerManager;
+        }
+
+        public MapManager GetMapManager()
+        {
+            return mapManager;
         }
 
         public Hill GetHill()

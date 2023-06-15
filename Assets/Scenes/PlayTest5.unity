@@ -3206,7 +3206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 625969638}
   score: {fileID: 1158702318}
-  scoreTickBorder: {fileID: 0}
+  scoreTickBorder: {fileID: 1245816269}
   tickTime: 0.3
 --- !u!1001 &159802528
 PrefabInstance:
@@ -3367,7 +3367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1606036312}
   score: {fileID: 1972359042}
-  scoreTickBorder: {fileID: 0}
+  scoreTickBorder: {fileID: 382835347}
   tickTime: 0.3
 --- !u!1 &181303908 stripped
 GameObject:
@@ -17696,7 +17696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 629553156}
   score: {fileID: 410081596}
-  scoreTickBorder: {fileID: 0}
+  scoreTickBorder: {fileID: 580466471}
   tickTime: 0.3
 --- !u!1001 &940390783
 PrefabInstance:
@@ -34610,7 +34610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8227253354185029249}
   score: {fileID: 1768925741}
-  scoreTickBorder: {fileID: 0}
+  scoreTickBorder: {fileID: 901218149}
   tickTime: 0.3
 --- !u!1001 &1882950818
 PrefabInstance:

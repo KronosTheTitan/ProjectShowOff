@@ -15,6 +15,7 @@ namespace Gameplay.Player
 
         private void Start()
         {
+            gameObject.SetActive(false);
             player.OnConnect += Connect;
             player.OnDisconnect += Disconnect;
 

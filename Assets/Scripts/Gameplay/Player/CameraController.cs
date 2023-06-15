@@ -25,12 +25,14 @@ namespace Gameplay.Player
         private void Connect()
         {
             GameManager.GetInstance().GetSplitScreenManager().AddCamera(targetCamera, player);
+            gameObject.SetActive(true);
         }
 
         private void Disconnect()
         {
             targetCamera.rect = new Rect(0, 0, 0, 0);
             GameManager.GetInstance().GetSplitScreenManager().RemoveCamera(player);
+            gameObject.SetActive(false);
           
         }
 

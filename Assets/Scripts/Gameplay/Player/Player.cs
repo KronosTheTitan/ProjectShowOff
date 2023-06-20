@@ -1,5 +1,6 @@
 using System.Collections;
 using Managers;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,12 +38,13 @@ namespace Gameplay.Player
             Vector3 position = transform.position;
             Vector3 direction = Vector2.down;
             float distance = groundedDistance;
-             
-            Debug.DrawRay(position, direction, Color.green);
-            Physics.Raycast(position, direction, out RaycastHit hit, distance, groundLayer);
-                 
-            if (hit.collider == null)
+
+            Collider[] colliders = new Collider[16];
+            int amountOfGroundCollisions = Physics.OverlapBoxNonAlloc(position, direction, colliders, quaternion.identity, groundLayer);
+            
+            if (amountOfGroundCollisions == 0)
                 return false;
+            
             return true;
         }
         

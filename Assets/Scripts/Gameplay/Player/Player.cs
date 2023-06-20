@@ -39,10 +39,10 @@ namespace Gameplay.Player
             Vector3 direction = Vector2.down;
             float distance = groundedDistance;
 
-            Collider[] colliders = new Collider[16];
-            int amountOfGroundCollisions = Physics.OverlapBoxNonAlloc(position, direction, colliders, quaternion.identity, groundLayer);
+            Debug.DrawRay(position, direction, Color.green);
+            Physics.Raycast(position, direction, out RaycastHit hit, distance, groundLayer);
             
-            if (amountOfGroundCollisions == 0)
+            if (hit.collider == null)
                 return false;
             
             return true;

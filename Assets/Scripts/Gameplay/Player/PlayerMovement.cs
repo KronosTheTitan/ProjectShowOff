@@ -8,10 +8,16 @@ namespace Gameplay.Player
     {
         [SerializeField] private Player player;
         [SerializeField] private float speed;
+        [SerializeField] private float speedMax = 7f;
         [SerializeField] private float rotationSmoothing = 5;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private float jumpHeight;
         [SerializeField] private Rigidbody rb;
+
+        [SerializeField] private float slopeCheckDistance = 5f;
+        [SerializeField] private float maxSlopeAngle = 40f;
+        [SerializeField] private bool slopeJump;
+        private RaycastHit slopeHit;
 
         public delegate void MovementDelegate();
 
@@ -40,6 +46,8 @@ namespace Gameplay.Player
             {
                 GameManager.GetInstance().GetMapManager().ResetToMainMenu();
             }
+
+            SpeedControl();
         }
 
         /// <summary>
@@ -51,9 +59,24 @@ namespace Gameplay.Player
 
             Vector3 forward = cameraController.transform.forward;
             Vector3 right = cameraController.transform.right;
-            
-            rb.AddForce((joystick.x * right + joystick.y * forward) * (speed * Time.deltaTime), ForceMode.Acceleration);
 
+            Vector3 moveDirection = (joystick.x * right + joystick.y * forward).normalized;
+
+            if (OnSlope() && !slopeJump)
+            {
+                moveDirection = GetSlopeMoveDirection(moveDirection);
+                rb.AddForce(moveDirection * (speed * Time.deltaTime * 6f), ForceMode.Force);
+
+                if (rb.velocity.y > 0)
+                    rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            }
+            else
+            {
+                rb.AddForce(moveDirection * (speed * Time.deltaTime), ForceMode.Force);
+            }
+
+            //rb.useGravity = !OnSlope();
+            
             if(joystick.magnitude < Controller.CONTROLLER_DEADZONE)
                 return;
             
@@ -72,6 +95,42 @@ namespace Gameplay.Player
 
                 OnJump?.Invoke();
             }
+        }
+
+        private void SpeedControl()
+        {
+            if (OnSlope() && !slopeJump)
+            {
+                if (rb.velocity.magnitude > speedMax)
+                    rb.velocity = rb.velocity.normalized * speedMax;
+            }
+
+            else
+            {
+                Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+                if (flatVel.magnitude > speedMax)
+                {
+                    Vector3 limitedVel = flatVel.normalized * speedMax;
+                    rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+                }
+            }
+        }
+
+        private bool OnSlope()
+        {
+            if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, slopeCheckDistance))
+            {
+                float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+                return angle < maxSlopeAngle && angle != 0;
+            }
+
+            return false;
+        }
+
+        private Vector3 GetSlopeMoveDirection(Vector3 moveDirection)
+        {
+            return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
         }
     }
 }

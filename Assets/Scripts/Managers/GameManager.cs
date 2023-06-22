@@ -161,7 +161,7 @@ namespace Managers
         public void AddPlayer(Player player)
         {
             scoreManager.AddNewPlayer(player);
-            uiManager.UpdateSplitScreen();
+//            uiManager.UpdateSplitScreen();
             controllerManager.AddPlayerToTable(player);
         }
 

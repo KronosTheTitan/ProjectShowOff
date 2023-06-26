@@ -34,8 +34,15 @@ namespace Gameplay.Player
             //are ignored.
             if (player.GetInKnockback())
                 return;
-            
-            Move();
+
+            if (GameManager.GetInstance().gameState == GameManager.GameStates.MainMenu)
+            {
+                MoveMainMenu();
+            }
+            else
+            {
+                Move();
+            }
             
             if(!player.IsGrounded())
                 return;
@@ -75,12 +82,28 @@ namespace Gameplay.Player
                 rb.AddForce(moveDirection * (speed * Time.deltaTime), ForceMode.Force);
             }
 
-            //rb.useGravity = !OnSlope();
+            rb.useGravity = !OnSlope();
             
             if(joystick.magnitude < Controller.CONTROLLER_DEADZONE)
                 return;
             
             Quaternion desiredRotation = Quaternion.LookRotation(joystick.x * right + joystick.y * forward, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, rotationSmoothing * Time.deltaTime);
+        }
+
+        /// <summary>
+        /// Moves the player based on the movement input.
+        /// </summary>
+        private void MoveMainMenu()
+        {
+            Vector3 joystick = player.GetController().GetJoystickLeft();
+            joystick = new Vector3(joystick.x, 0, joystick.y) * -1;
+            rb.AddForce(joystick * (speed * Time.deltaTime), ForceMode.Force);
+            
+            if(joystick.magnitude < Controller.CONTROLLER_DEADZONE)
+                return;
+            
+            Quaternion desiredRotation = Quaternion.LookRotation(joystick, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, rotationSmoothing * Time.deltaTime);
         }
 

@@ -31,6 +31,11 @@ namespace Managers
         [SerializeField] private int maximumNumberOfCameras = 4;
         [SerializeField] private UIManager uiManager;
 
+        public Rect GetRectForPlayerIndex(int index)
+        {
+            return cameraLayouts[cameras.Count - 1].rects[index];
+        }
+        
         /// <summary>
         /// 
         /// </summary>

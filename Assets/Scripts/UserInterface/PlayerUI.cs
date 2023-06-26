@@ -20,8 +20,23 @@ namespace UserInterface
         {
             player.OnScoreIncrease += UpdateScore;
             player.OnScoreContested += ScoreContested;
+
+            player.OnConnect += OnConnect;
+            player.OnDisconnect += OnDisconnect;
+            
+            gameObject.SetActive(false);
         }
 
+        private void OnConnect()
+        {
+            gameObject.SetActive(true);
+        }
+
+        private void OnDisconnect()
+        {
+            gameObject.SetActive(false);
+        }
+        
         private void UpdateScore()
         {
             score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();

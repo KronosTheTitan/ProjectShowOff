@@ -25,6 +25,7 @@ namespace Gameplay.Player
         #region Events
         public delegate void PlayerDelegate();
         public event PlayerDelegate OnScoreIncrease;
+        public event PlayerDelegate OnScoreContested;
         public event PlayerDelegate OnTakeDamage;
         public event PlayerDelegate OnConnect;
         public event PlayerDelegate OnDisconnect;
@@ -65,6 +66,10 @@ namespace Gameplay.Player
         {
             OnScoreIncrease?.Invoke();
         }
+        public void InvokeOnScoreContested()
+        {
+            OnScoreContested?.Invoke();
+        }
 
         /// <summary>
         /// starts the process of removing a player from the game.
@@ -79,8 +84,6 @@ namespace Gameplay.Player
         public void SetRespawnPoint(Transform newSpawn)
         {
             respawnPoint = newSpawn;
-
-
         }
 
 

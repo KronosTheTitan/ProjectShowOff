@@ -26,7 +26,7 @@ namespace Managers
 
         public void AddScore(Player player, int amount)
         {
-            if(Time.time < _lastScoreReceived[player] + scoreIntervalInSeconds)
+            if(!CanReceiveScore(player))
                 return;
 
             _lastScoreReceived[player] = Time.time;
@@ -38,6 +38,20 @@ namespace Managers
             {
                 GameManager.GetInstance().HandleVictory(player);
             }
+        }
+
+        public bool CanReceiveScore(Player player)
+        {
+            return Time.time > _lastScoreReceived[player] + scoreIntervalInSeconds;
+        }
+
+        public void TakeEmptyTick(Player player)
+        {
+            if(!CanReceiveScore(player))
+                return;
+            _lastScoreReceived[player] = Time.time;
+                    
+            player.InvokeOnScoreContested();
         }
 
         public void AddNewPlayer(Player player)

@@ -32,6 +32,15 @@ namespace Managers
 
         #region Variables
 
+        public enum GameStates
+        {
+            MainMenu,
+            InMatch,
+            Victory
+        }
+
+        public GameStates gameState = GameStates.MainMenu;
+        
         [SerializeField] private Player[] players;
         
         [SerializeField] private ScoreManager scoreManager;
@@ -68,22 +77,23 @@ namespace Managers
         #region GetMethods
         public Player[] GetPlayers()
         {
-            //Yes I am fully aware this code is a little odd.
-            //I wrote it this way to avoid the list of players being edited from
-            //outside this class. And just returning the array directly makes this possible.
-            Player[] output = new Player[players.Length];
-            
-            for (int i = 0; i < output.Length; i++)
-            {
-                output[i] = players[i];
-            }
-
-            return output;
+            return players;
         }
 
         public Player GetPlayer(int index)
         {
             return players[index];
+        }
+        
+        public int GetPlayerIndex(Player player)
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (players[i] == player)
+                    return i;
+            }
+
+            return 0;
         }
         
         public ScoreManager GetScoreManager()
@@ -154,14 +164,14 @@ namespace Managers
         {
             //reloads the scene
             _instance = null;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("PlayTest5");
             gameStartTimeInSeconds = Time.time;
         }
 
         public void AddPlayer(Player player)
         {
             scoreManager.AddNewPlayer(player);
-//            uiManager.UpdateSplitScreen();
+            uiManager.UpdateSplitScreen();
             controllerManager.AddPlayerToTable(player);
         }
 

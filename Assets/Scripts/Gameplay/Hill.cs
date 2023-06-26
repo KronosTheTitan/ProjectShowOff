@@ -43,11 +43,22 @@ namespace Gameplay
 
         void HandleScore()
         {
-            if(playersOnHill.Count == 0)
+            if (playersOnHill.Count == 0)
+            {
                 return;
-            
-            if(playersOnHill.Count == MaximumPlayersOnHill)
+            }
+
+            if (playersOnHill.Count == MaximumPlayersOnHill)
+            {
                 GameManager.GetInstance().GetScoreManager().AddScore(playersOnHill[FirstPlayerInList], scorePerTick);
+            }
+            else
+            {
+                foreach (Player.Player player in playersOnHill)
+                {
+                    GameManager.GetInstance().GetScoreManager().TakeEmptyTick(player);
+                }
+            }
 
             playersOnHill.Clear();
         }

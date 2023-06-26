@@ -102,6 +102,7 @@ namespace Managers
 
         public void InitializeMap(int zone)
         {
+            GameManager.GetInstance().gameState = GameManager.GameStates.InMatch;
             mainMenuCamera.gameObject.SetActive(false);
             winnerCamera.gameObject.SetActive(false);
             SetPlayerSpawn(zone);
@@ -109,7 +110,6 @@ namespace Managers
             RespawnActivePlayers();
             timerIsRunning = true;
             timeRemaining = 180;
-            
         }
 
         public void ResetToMainMenu()
@@ -127,19 +127,11 @@ namespace Managers
 
         IEnumerator VictoryTime()
         {
-            
-            twoWaySplitScreen.SetActive(false);
-            
-            threeWaySplitScreen.SetActive(false);
-           
-            fourWaySplitScreen.SetActive(false);
+            GameManager.GetInstance().gameState = GameManager.GameStates.Victory;
+            uiManager.UpdateSplitScreen();
             
             yield return new WaitForSeconds(10f);
-            winnerCamera.gameObject.SetActive(false);
-            SetPlayerSpawn(4);
-            mainMenuCamera.gameObject.SetActive(true);
-            RespawnActivePlayers();
-            
+            ResetToMainMenu(); 
         }
 
         void DisplayTime(float timeToDisplay)
@@ -151,8 +143,6 @@ namespace Managers
         }
 
     }
-
-    
 }
 
 

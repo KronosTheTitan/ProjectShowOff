@@ -434,7 +434,7 @@ Transform:
   - {fileID: 8871987632144579305}
   - {fileID: 1509758888941331738}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1967681408694434236
 GameObject:
@@ -1391,8 +1391,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637782012044874689}
   serializedVersion: 4
-  m_Mass: 4
-  m_Drag: 4
+  m_Mass: 1
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1443,6 +1443,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7862598564005173854}
+  lastTonguePull: 0
+  lastVocalSack: 0
+  tonguePullCooldownSeconds: 0
+  vocalSackCooldownSeconds: 0
   horizontalRaysTongue: 3
   horizontalArcTongue: 6
   verticalRaysTongue: 3
@@ -1476,12 +1480,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7862598564005173854}
-  speed: 2800
+  speed: 6000
+  speedMax: 7
   rotationSmoothing: 5
   cameraController: {fileID: 8513743924412069252}
-  jumpHeight: 150
+  jumpHeight: 50
   rb: {fileID: 176905167184368511}
-  mapManager: {fileID: 0}
+  slopeCheckDistance: 5
+  maxSlopeAngle: 40
+  slopeJump: 0
 --- !u!136 &4577559791157356808
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1818,7 +1825,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6605226455525657483}
-  m_LocalRotation: {x: 0, y: 0.9999109, z: -0, w: -0.013351341}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -6.267643, y: 2.0598125, z: -9.9832}
   m_LocalScale: {x: 3.5802197, y: 3.5802197, z: 3.58022}
   m_ConstrainProportionsScale: 0
@@ -1826,7 +1833,7 @@ Transform:
   - {fileID: 455766729309440327}
   m_Father: {fileID: 1452104847885385401}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 181.53, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &8513743924412069252
 MonoBehaviour:
   m_ObjectHideFlags: 0

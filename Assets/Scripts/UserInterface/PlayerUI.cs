@@ -24,7 +24,7 @@ namespace UserInterface
             player.OnConnect += OnConnect;
             player.OnDisconnect += OnDisconnect;
             
-            gameObject.SetActive(false);
+            
         }
 
         private void OnConnect()

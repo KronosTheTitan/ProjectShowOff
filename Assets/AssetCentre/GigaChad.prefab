@@ -869,7 +869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3689568139618580535}
   m_LocalRotation: {x: 0.24452567, y: -0.016477352, z: 0.0042601386, w: 0.96949345}
-  m_LocalPosition: {x: 0.193, y: 3.689, z: -4.945}
+  m_LocalPosition: {x: 0.6427828, y: 4.054856, z: -4.945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1116,6 +1116,7 @@ GameObject:
   - component: {fileID: 4577559791157356808}
   - component: {fileID: 7808091410437009586}
   - component: {fileID: 6139151381290590880}
+  - component: {fileID: 8823310825056555753}
   m_Layer: 0
   m_Name: GigaChadPlayer
   m_TagString: Untagged
@@ -1147,8 +1148,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637782012044874689}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 1
+  m_Mass: 1.2
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1179,12 +1180,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  respawnPoint: {fileID: 3876763689066173062}
+  respawnPoint: {fileID: 0}
   rigidbody: {fileID: 176905167184368511}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundedDistance: 1
+  groundedDistance: 0.69
   inKnockback: 0
 --- !u!114 &3257366601789245821
 MonoBehaviour:
@@ -1236,14 +1237,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7862598564005173854}
-  speed: 5000
+  speed: 6000
   speedMax: 15
-  rotationSmoothing: 5
+  rotationSmoothing: 30
   cameraController: {fileID: 8513743924412069252}
-  jumpHeight: 50
+  jumpHeight: 30
   rb: {fileID: 176905167184368511}
   slopeCheckDistance: 1
-  maxSlopeAngle: 40
+  maxSlopeAngle: 45
   slopeJump: 0
 --- !u!136 &4577559791157356808
 CapsuleCollider:
@@ -1262,7 +1263,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.48318315
   m_Height: 1.7364175
@@ -1373,6 +1374,27 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637782012044874689}
   m_Enabled: 1
+--- !u!65 &8823310825056555753
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637782012044874689}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6347425, y: 1.67315, z: 0.6514209}
+  m_Center: {x: 0.099656306, y: 0.81657517, z: 0.016690006}
 --- !u!1 &5667506697711321306
 GameObject:
   m_ObjectHideFlags: 0

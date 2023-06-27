@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Reset",
+                    "name": "Respawn",
                     "type": "Button",
                     "id": "0d3ee6de-76dc-409f-b7b7-7494aab862af",
                     "expectedControlType": "Button",
@@ -267,7 +267,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reset",
+                    "action": "Respawn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -278,7 +278,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reset",
+                    "action": "Respawn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

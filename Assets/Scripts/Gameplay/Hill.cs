@@ -63,6 +63,11 @@ namespace Gameplay
             playersOnHill.Clear();
         }
 
+        public void ResetSite()
+        {
+            lastMoveInSeconds = -60;
+        }
+
         private void OnTriggerStay(Collider other)
         {
             Player.Player player = other.gameObject.GetComponent<Player.Player>();

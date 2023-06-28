@@ -3918,7 +3918,7 @@ Animation:
     type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 45043f304982d404d805ed47a4348a3c, type: 3}
-  - {fileID: 1827226128182048838, guid: 5afe4d1a60be83a478beebb0dcf3bbb4, type: 3}
+  - {fileID: 1827226128182048838, guid: b67a427d4dc2bfa4583abe98b2636073, type: 3}
   - {fileID: 1827226128182048838, guid: ae2931972e222fe4581ea1a304515ae9, type: 3}
   - {fileID: 1827226128182048838, guid: 8b6f151f42e9a36469d735df930d2892, type: 3}
   - {fileID: 1827226128182048838, guid: 34576649b6de46948bbbf36c19db890d, type: 3}

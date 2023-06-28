@@ -283,7 +283,7 @@
                 {
                     "name": "",
                     "id": "e22856e1-0342-4f1d-acaf-a0eb647ad61c",
-                    "path": "<Gamepad>/rightStickPress",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -689,20 +689,9 @@
                 },
                 {
                     "name": "",
-                    "id": "87305976-bb28-4b08-8f45-3ecb4c76af49",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ResetToMainMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9f7cf267-2709-4ba5-af8b-d52e706bfe27",
-                    "path": "<XInputController>/select",
-                    "interactions": "",
+                    "id": "d2f89582-78c9-48b9-81a4-c6aeb2fef024",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "Hold(duration=2)",
                     "processors": "",
                     "groups": "",
                     "action": "ResetToMainMenu",

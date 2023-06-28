@@ -154,6 +154,7 @@ namespace Managers
         {
            
             tutorialScreen.SetActive(true);
+            RespawnActivePlayers();
             yield return new WaitForSeconds(2f);
             mainMenuCamera.gameObject.SetActive(false);
             tutorialScreen.SetActive(false);
@@ -161,7 +162,6 @@ namespace Managers
             GameManager.GetInstance().gameState = GameManager.GameStates.InMatch;
             
             uiManager.UpdateSplitScreen();
-            RespawnActivePlayers();
             timerIsRunning = true;
             timeRemaining = 180;
         }

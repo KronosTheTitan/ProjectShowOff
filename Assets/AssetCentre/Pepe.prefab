@@ -2748,7 +2748,7 @@ Transform:
   - {fileID: 723487559736988147}
   - {fileID: 4861000328132557869}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -128.867, z: 0}
 --- !u!1 &5447433552549966500
 GameObject:
@@ -4203,7 +4203,7 @@ MonoBehaviour:
   verticalRaysTongue: 3
   verticalArcTongue: 6
   tongueRange: 45
-  tongueStrength: 15
+  tongueStrength: 6.9
   tonguePullDuration: 1
   tongueWindup: 0
   currentTongueTime: 1
@@ -4212,11 +4212,11 @@ MonoBehaviour:
   verticalRays: 12
   verticalArc: 45
   vocalSackRange: 30
-  vocalSackStrength: 35
+  vocalSackStrength: 60
   vocalSackKnockbackDuration: 1
   vocalSackWindup: 0.2
   kickRange: 30
-  kickStrength: 50
+  kickStrength: 69
   kickDamageDuration: 1
   kickWindup: 0
 --- !u!114 &5971462281109987703
@@ -4548,14 +4548,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8191170737407371241}
-  m_LocalRotation: {x: 0.24452567, y: -0.016477352, z: 0.0042601386, w: 0.96949345}
+  m_LocalRotation: {x: 0.18646239, y: -0.019289298, z: 0.0036616644, w: 0.98226595}
   m_LocalPosition: {x: 0.6427828, y: 4.054856, z: -4.945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 723487559736988147}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 28.312, y: -1.944, z: 0.013}
+  m_LocalEulerAnglesHint: {x: 21.497, y: -2.25, z: 0}
 --- !u!20 &7373893787650459704
 Camera:
   m_ObjectHideFlags: 0

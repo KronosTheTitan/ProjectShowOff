@@ -97,7 +97,7 @@ namespace Gameplay.Player
                     damageable.TakeDamage(-(transform.position - hit.collider.transform.position), player, tongueStrength,
                         tonguePullDuration);
 
-                    Debug.Log("Player position: " + transform.position + " hit position: " + hit.collider.transform.position + " combined: " + (gameObject.transform.position - hit.collider.transform.position));
+                    //Debug.Log("Player position: " + transform.position + " hit position: " + hit.collider.transform.position + " combined: " + (gameObject.transform.position - hit.collider.transform.position));
                     doTongueAnimation(hit.collider.transform.position);
 
                     return;

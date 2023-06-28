@@ -3223,14 +3223,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6298569746604356859}
-  m_LocalRotation: {x: 0.24452567, y: -0.016477352, z: 0.0042601386, w: 0.96949345}
+  m_LocalRotation: {x: 0.22629972, y: -0.021946343, z: -0.017460922, w: 0.9736539}
   m_LocalPosition: {x: 0.6427828, y: 4.054856, z: -4.945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3904751956640472977}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 28.312, y: -1.944, z: 0.013}
+  m_LocalEulerAnglesHint: {x: 26.098, y: -3.233, z: -2.804}
 --- !u!20 &2809959723063073942
 Camera:
   m_ObjectHideFlags: 0
@@ -3391,7 +3391,7 @@ Transform:
   - {fileID: 3904751956640472977}
   - {fileID: 3704777643763562754}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -128.867, z: 0}
 --- !u!1 &6489172656834068386
 GameObject:
@@ -4599,7 +4599,7 @@ MonoBehaviour:
   verticalRaysTongue: 3
   verticalArcTongue: 6
   tongueRange: 45
-  tongueStrength: 15
+  tongueStrength: 6.9
   tonguePullDuration: 1
   tongueWindup: 0
   currentTongueTime: 1
@@ -4608,11 +4608,11 @@ MonoBehaviour:
   verticalRays: 12
   verticalArc: 45
   vocalSackRange: 30
-  vocalSackStrength: 35
+  vocalSackStrength: 60
   vocalSackKnockbackDuration: 1
   vocalSackWindup: 0.2
   kickRange: 30
-  kickStrength: 50
+  kickStrength: 69
   kickDamageDuration: 1
   kickWindup: 0
 --- !u!114 &128671418838094256

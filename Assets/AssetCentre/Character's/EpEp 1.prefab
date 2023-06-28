@@ -1264,7 +1264,7 @@ Transform:
   - {fileID: 1713317645269384072}
   - {fileID: 5826852580905482815}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -128.867, z: 0}
 --- !u!1 &2658296602093962764
 GameObject:
@@ -4123,7 +4123,7 @@ MonoBehaviour:
   verticalRaysTongue: 3
   verticalArcTongue: 6
   tongueRange: 45
-  tongueStrength: 15
+  tongueStrength: 6.9
   tonguePullDuration: 1
   tongueWindup: 0
   currentTongueTime: 1
@@ -4132,11 +4132,11 @@ MonoBehaviour:
   verticalRays: 12
   verticalArc: 45
   vocalSackRange: 30
-  vocalSackStrength: 35
+  vocalSackStrength: 60
   vocalSackKnockbackDuration: 1
   vocalSackWindup: 0.2
   kickRange: 30
-  kickStrength: 50
+  kickStrength: 69
   kickDamageDuration: 1
   kickWindup: 0
 --- !u!114 &7623125605150216352

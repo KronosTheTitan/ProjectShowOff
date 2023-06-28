@@ -32,6 +32,7 @@ namespace Managers
 
         public void RemoveControllerFromPlayer(Player player)
         {
+            Destroy(_playerControllerTable[player].gameObject);
             _playerControllerTable[player] = null;
         }
 

@@ -155,7 +155,7 @@ namespace Managers
            
             tutorialScreen.SetActive(true);
             RespawnActivePlayers();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(9f);
             mainMenuCamera.gameObject.SetActive(false);
             tutorialScreen.SetActive(false);
             scoresAndTimer.SetActive(true);

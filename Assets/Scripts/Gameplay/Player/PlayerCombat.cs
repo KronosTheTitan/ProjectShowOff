@@ -16,15 +16,18 @@ namespace Gameplay.Player
         [SerializeField] private float vocalSackCooldownSeconds;
 
         [SerializeField] private GameObject tonguePosition;
+        [SerializeField] private GameObject tongueBasePosition;
         [SerializeField] private float tongueSpeed = 5;
         [SerializeField] private MultiPositionConstraint tongueSettings;
-        [SerializeField] private bool targetHit = false;
+
+
         
         public delegate void CombatDelegate();
 
         public event CombatDelegate OnKick;
         public event CombatDelegate OnVocalSack;
         public event CombatDelegate OnTonguePull;
+
 
         private void Update()
         {
@@ -69,6 +72,9 @@ namespace Gameplay.Player
         {
             if(RemainingTonguePullCooldown() > 0)
                 return;
+
+            lastTonguePull = Time.time;
+
             for (float x = -(horizontalArc / 2); x < horizontalArcTongue/2; x += horizontalArcTongue/horizontalRaysTongue)
             {
                 Quaternion horizontal = Quaternion.AngleAxis(x , transform.up);
@@ -97,13 +103,15 @@ namespace Gameplay.Player
                     return;
                 }
             }
+
+            doTongueAnimation(tongueBasePosition.transform.position);
+
         }
 
         [SerializeField] private float currentTongueTime = 1;
 
         private void doTongueAnimation(Vector3 position)
         {
-            targetHit = true;
             tonguePosition.transform.position = position;
             currentTongueTime = 1;
             StartCoroutine(TongueAnimation());
@@ -115,11 +123,14 @@ namespace Gameplay.Player
             while (currentTongueTime > -1)
             {
                 currentTongueTime -= Time.deltaTime * tongueSpeed;
+                if (currentTongueTime <= -1)
+                {
+                    currentTongueTime = -1;
+                }
                 tongueSettings.weight = Mathf.Abs(Mathf.Abs(currentTongueTime) - 1);
                 yield return new WaitForSeconds(0.01f);
                 
             }
-            targetHit = false;
         }
 
 
@@ -146,6 +157,8 @@ namespace Gameplay.Player
         {
             if(RemainingVocalSackCooldown() > 0)
                 return;
+            lastVocalSack = Time.time;
+
             List<IDamageable> previousHits = new List<IDamageable>();
 
             for (float x = -(horizontalArc / 2); x < horizontalArc/2; x += horizontalArc/horizontalRays)

@@ -674,37 +674,6 @@ Transform:
   m_Father: {fileID: 8358770806280846032}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1747687287880857005
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1372147599341711127}
-  m_Layer: 0
-  m_Name: 2Frog_Idle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1372147599341711127
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747687287880857005}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000028610227}
-  m_LocalPosition: {x: -6.568947, y: 1.5770874, z: -9.837463}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1452104847885385401}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1879628105491795543
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,9 +771,8 @@ Transform:
   - {fileID: 8811835126455261590}
   - {fileID: 8871987632144579305}
   - {fileID: 1509758888941331738}
-  - {fileID: 1372147599341711127}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1977478610236909065
 GameObject:

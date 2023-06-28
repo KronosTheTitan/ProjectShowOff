@@ -163,7 +163,7 @@ namespace Managers
             uiManager.UpdateSplitScreen();
             RespawnActivePlayers();
             timerIsRunning = true;
-            timeRemaining = 15;
+            timeRemaining = 180;
         }
 
         void DisplayTime(float timeToDisplay)

@@ -36,8 +36,8 @@ ModelImporter:
       name: pepejump
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 55
-      lastFrame: 79
+      firstFrame: 57
+      lastFrame: 75
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -60,7 +60,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 0
   meshes:
     lODScreenPercentages: []

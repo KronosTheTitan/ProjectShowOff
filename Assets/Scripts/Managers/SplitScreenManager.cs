@@ -24,16 +24,15 @@ namespace Managers
     /// </summary>
     public class SplitScreenManager : MonoBehaviour
     {
-        private Dictionary<Player, Camera> _playerCameraTable = new();
-
         [SerializeField] private CameraLayout[] cameraLayouts;
-        [SerializeField] private List<Camera> cameras;
-        [SerializeField] private int maximumNumberOfCameras = 4;
+        [SerializeField] private Camera[] cameras;
         [SerializeField] private UIManager uiManager;
 
+        private int activeCams = 0;
+        
         public Rect GetRectForPlayerIndex(int index)
         {
-            return cameraLayouts[cameras.Count - 1].rects[index];
+            return cameraLayouts[activeCams].rects[index];
         }
         
         /// <summary>
@@ -49,18 +48,14 @@ namespace Managers
         /// In the event that the camera limit has been reached
         /// the function will return false.
         /// </returns>
-        public bool AddCamera(Camera iCamera, Player player)
+        public void AddCamera(Camera iCamera, Player player)
         {
-            if(cameras.Count == maximumNumberOfCameras)
-                return false;
-            
-            cameras.Add(iCamera);
-            _playerCameraTable.Add(player,iCamera);
+            cameras[GameManager.GetInstance().GetPlayerIndex(player)] = iCamera;
             
             UpdateCameraLayout();
             uiManager.UpdateSplitScreen();
 
-            return true;
+            activeCams++;
         }
 
         /// <summary>
@@ -70,22 +65,18 @@ namespace Managers
         /// The player whose camera needs to be removed from the layout.
         /// </param>
         /// <returns></returns>
-        public bool RemoveCamera(Player player)
+        public void RemoveCamera(Player player)
         {
-            if(cameras.Count == 1)
-                return false;
-
-            cameras.Remove(_playerCameraTable[player]);
-            _playerCameraTable.Remove(player);
+            cameras[GameManager.GetInstance().GetPlayerIndex(player)] = null;
             
             UpdateCameraLayout();
 
-            return false;
+            activeCams--;
         }
 
         public int NumberOfActiveCameras()
         {
-            return cameras.Count;
+            return activeCams;
         }
 
         /// <summary>
@@ -93,9 +84,11 @@ namespace Managers
         /// </summary>
         private void UpdateCameraLayout()
         {
-            for (int i = 0; i < cameras.Count; i++)
+            for (int i = 0; i < 4; i++)
             {
-                cameras[i].rect = cameraLayouts[cameras.Count - 1].rects[i];         
+                if(cameras[i] == null)
+                    continue;
+                cameras[i].rect = cameraLayouts[activeCams].rects[i];         
             }
         }
     }

@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 namespace Gameplay.Player
 {
@@ -12,6 +14,11 @@ namespace Gameplay.Player
         [SerializeField] private float lastVocalSack;
         [SerializeField] private float tonguePullCooldownSeconds;
         [SerializeField] private float vocalSackCooldownSeconds;
+
+        [SerializeField] private GameObject tonguePosition;
+        [SerializeField] private float tongueSpeed = 5;
+        [SerializeField] private MultiPositionConstraint tongueSettings;
+        [SerializeField] private bool targetHit = false;
         
         public delegate void CombatDelegate();
 
@@ -83,11 +90,38 @@ namespace Gameplay.Player
 
                     damageable.TakeDamage(-(transform.position - hit.collider.transform.position), player, tongueStrength,
                         tonguePullDuration);
-                    
+
+                    Debug.Log("Player position: " + transform.position + " hit position: " + hit.collider.transform.position + " combined: " + (gameObject.transform.position - hit.collider.transform.position));
+                    doTongueAnimation(hit.collider.transform.position);
+
                     return;
                 }
             }
         }
+
+        [SerializeField] private float currentTongueTime = 1;
+
+        private void doTongueAnimation(Vector3 position)
+        {
+            targetHit = true;
+            tonguePosition.transform.position = position;
+            currentTongueTime = 1;
+            StartCoroutine(TongueAnimation());
+        }
+
+        private IEnumerator TongueAnimation()
+        {
+            //1 to -1 absolute do -1 absolute
+            while (currentTongueTime > -1)
+            {
+                currentTongueTime -= Time.deltaTime * tongueSpeed;
+                tongueSettings.weight = Mathf.Abs(Mathf.Abs(currentTongueTime) - 1);
+                yield return new WaitForSeconds(0.01f);
+                
+            }
+            targetHit = false;
+        }
+
 
         public float RemainingTonguePullCooldown()
         {

@@ -14328,6 +14328,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 589303645}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &589493718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4126600863669901475, guid: 6ed94d935b7c89b408598b790193af08,
+    type: 3}
+  m_PrefabInstance: {fileID: 629553155}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10bdb03db33fb148b858a4a3b646cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &591474046
 GameObject:
   m_ObjectHideFlags: 0
@@ -15217,6 +15229,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: GigaChad
       objectReference: {fileID: 0}
+    - target: {fileID: 3257366601789245821, guid: 6ed94d935b7c89b408598b790193af08,
+        type: 3}
+      propertyPath: tongueSpeed
+      value: 5.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257366601789245821, guid: 6ed94d935b7c89b408598b790193af08,
+        type: 3}
+      propertyPath: tongueSettings
+      value: 
+      objectReference: {fileID: 589493718}
+    - target: {fileID: 3625576484913945861, guid: 6ed94d935b7c89b408598b790193af08,
+        type: 3}
+      propertyPath: m_Data.m_SourceObjects.m_Item0.weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126600863669901475, guid: 6ed94d935b7c89b408598b790193af08,
+        type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005682012904482241, guid: 6ed94d935b7c89b408598b790193af08,
+        type: 3}
+      propertyPath: m_Data.m_Space
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5637782012044874689, guid: 6ed94d935b7c89b408598b790193af08,
         type: 3}
       propertyPath: m_IsActive
@@ -15227,7 +15264,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3625576484913945861, guid: 6ed94d935b7c89b408598b790193af08, type: 3}
+    - {fileID: 5005682012904482241, guid: 6ed94d935b7c89b408598b790193af08, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

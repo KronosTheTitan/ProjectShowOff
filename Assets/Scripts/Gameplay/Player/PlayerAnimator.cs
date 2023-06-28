@@ -70,6 +70,7 @@ namespace Gameplay.Player
 
         private void Tongue()
         {
+           
             animator.SetTrigger("Tongue");
         }
 

@@ -32,7 +32,7 @@ using UnityEngine;
 
          public Rect GetRectForPlayerIndex(int index)
          {
-             return cameraLayouts[cameras.Count - 1].rects[index];
+             return cameraLayouts[cameras.Count - 1].rects[cameras.IndexOf(_playerCameraTable[GameManager.GetInstance().GetPlayer(index)])];
          }
 
          /// <summary>

@@ -22,7 +22,7 @@ namespace UserInterface
             player.OnScoreContested += ScoreContested;
 
             player.OnConnect += OnConnect;
-            player.OnDisconnect += OnDisconnect;
+            //player.OnDisconnect += OnDisconnect;
             
             
         }
@@ -32,10 +32,10 @@ namespace UserInterface
             gameObject.SetActive(true);
         }
 
-        private void OnDisconnect()
+       /* private void OnDisconnect()
         {
             gameObject.SetActive(false);
-        }
+        }*/
         
         private void UpdateScore()
         {

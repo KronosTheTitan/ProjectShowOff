@@ -78,6 +78,7 @@ using UnityEngine;
              _playerCameraTable.Remove(player);
 
              UpdateCameraLayout();
+            uiManager.UpdateSplitScreen();
 
              return false;
          }

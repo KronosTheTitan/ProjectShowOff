@@ -2977,14 +2977,14 @@ MonoBehaviour:
   tongueBasePosition: {fileID: 6540188327320637167}
   tongueSpeed: 10
   tongueSettings: {fileID: 4126600863669901475}
-  horizontalRaysTongue: 6
-  horizontalArcTongue: 2
-  verticalRaysTongue: 6
-  verticalArcTongue: 2
-  tongueRange: 50
-  tongueStrength: 20
+  horizontalRaysTongue: 3
+  horizontalArcTongue: 6
+  verticalRaysTongue: 3
+  verticalArcTongue: 6
+  tongueRange: 45
+  tongueStrength: 15
   tonguePullDuration: 1
-  tongueWindup: 0.2
+  tongueWindup: 0
   currentTongueTime: 1
   horizontalRays: 18
   horizontalArc: 360
@@ -2997,7 +2997,7 @@ MonoBehaviour:
   kickRange: 30
   kickStrength: 50
   kickDamageDuration: 1
-  kickWindup: 0.5
+  kickWindup: 0
 --- !u!114 &6295331563434687582
 MonoBehaviour:
   m_ObjectHideFlags: 0

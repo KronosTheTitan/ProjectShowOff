@@ -30621,18 +30621,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 421593754963136838, guid: e823cd521cb5bd1499cae2ebb34177f2,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4419
+      objectReference: {fileID: 0}
+    - target: {fileID: 421593754963136838, guid: e823cd521cb5bd1499cae2ebb34177f2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4419
+      objectReference: {fileID: 0}
+    - target: {fileID: 421593754963136838, guid: e823cd521cb5bd1499cae2ebb34177f2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4419
+      objectReference: {fileID: 0}
+    - target: {fileID: 421593754963136838, guid: e823cd521cb5bd1499cae2ebb34177f2,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 206.83707
+      value: 204
       objectReference: {fileID: 0}
     - target: {fileID: 421593754963136838, guid: e823cd521cb5bd1499cae2ebb34177f2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 205
+      value: 195
       objectReference: {fileID: 0}
     - target: {fileID: 421593754963136838, guid: e823cd521cb5bd1499cae2ebb34177f2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 942.25
+      value: 934
       objectReference: {fileID: 0}
     - target: {fileID: 421593754963136838, guid: e823cd521cb5bd1499cae2ebb34177f2,
         type: 3}
@@ -49442,6 +49457,11 @@ MonoBehaviour:
     - {fileID: 5338324}
     - {fileID: 5338324}
     - {fileID: 5338324}
+  playerUIs:
+  - {fileID: 939930855}
+  - {fileID: 1879866981}
+  - {fileID: 157140858}
+  - {fileID: 175937330}
   hill: {fileID: 738368120}
   hillObject: {fileID: 738368118}
   manager: {fileID: 5768801545259982953}

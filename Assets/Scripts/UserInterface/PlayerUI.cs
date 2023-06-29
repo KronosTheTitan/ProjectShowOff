@@ -43,10 +43,18 @@ namespace UserInterface
             StartCoroutine(ScoreTick(tickTime));
         }
 
+        public void UpdateScoreText()
+        {
+            score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();
+            
+        }
+
         private void ScoreContested()
         {
             StartCoroutine(ScoreContestedTick(tickTime));
         }
+
+        
 
         IEnumerator ScoreTick(float tickTime)
         {

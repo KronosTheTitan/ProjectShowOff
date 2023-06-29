@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using TMPro;
+using UserInterface;
 
 namespace Managers
 {
@@ -16,6 +17,9 @@ namespace Managers
 
         [SerializeField] private List<ZonePoints> spawnPoints;
         [SerializeField] private List<HillPoints> hillLocations;
+
+       [SerializeField] private List<PlayerUI> playerUIs;
+        
 
         [SerializeField] private Hill hill;
         [SerializeField] private GameObject hillObject;
@@ -79,6 +83,7 @@ namespace Managers
             for (int i = 0; i < players.Length; i++)
             {
                 GameManager.GetInstance().GetPlayer(i).SetRespawnPoint(spawnPoints[zone].points[i].transform);
+                playerUIs[i].UpdateScoreText();
             }
             SetHillLocations(zone);
         }
@@ -109,8 +114,11 @@ namespace Managers
 
         public void InitializeMap(int zone)
         {
+            GameManager.GetInstance().GetScoreManager().ResetScore();
             SetPlayerSpawn(zone);
-            hillObject.SetActive(true);
+            
+            
+
             StartCoroutine(TutorialTime());
         }
 
@@ -143,6 +151,7 @@ namespace Managers
             uiManager.UpdateSplitScreen();
             
             yield return new WaitForSeconds(10f);
+            hillObject.SetActive(true);
             winnerCamera.gameObject.SetActive(false);
             mainMenuCamera.gameObject.SetActive(true);
             SetPlayerSpawn(4);
@@ -156,6 +165,7 @@ namespace Managers
             tutorialScreen.SetActive(true);
             RespawnActivePlayers();
             yield return new WaitForSeconds(9f);
+            hillObject.SetActive(true);
             mainMenuCamera.gameObject.SetActive(false);
             tutorialScreen.SetActive(false);
             scoresAndTimer.SetActive(true);
@@ -163,7 +173,7 @@ namespace Managers
             
             uiManager.UpdateSplitScreen();
             timerIsRunning = true;
-            timeRemaining = 180;
+            timeRemaining = 20;
         }
 
         void DisplayTime(float timeToDisplay)

@@ -24,6 +24,16 @@ namespace Managers
             _lastScoreReceived.Clear();
         }
 
+        public void ResetScore()
+        {
+            Player[] players = GameManager.GetInstance().GetPlayers();
+            for (int i = 0; i < players.Length; i++)
+            {
+                _scoreTable[players[i]] = 0;
+                
+            }
+        }
+
         public void AddScore(Player player, int amount)
         {
             if(!CanReceiveScore(player))

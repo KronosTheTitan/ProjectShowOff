@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Reset",
+                    "name": "Respawn",
                     "type": "Button",
                     "id": "0d3ee6de-76dc-409f-b7b7-7494aab862af",
                     "expectedControlType": "Button",
@@ -99,6 +99,15 @@
                     "name": "ResetToMainMenu",
                     "type": "Button",
                     "id": "614931cb-2908-4222-a54b-076a7441d350",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InGameMenu",
+                    "type": "Button",
+                    "id": "88a569f0-057c-4fe3-8d59-bb5770ca1ffd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -267,18 +276,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reset",
+                    "action": "Respawn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "e22856e1-0342-4f1d-acaf-a0eb647ad61c",
-                    "path": "<Gamepad>/rightStickPress",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reset",
+                    "action": "Respawn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -680,9 +689,9 @@
                 },
                 {
                     "name": "",
-                    "id": "87305976-bb28-4b08-8f45-3ecb4c76af49",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
+                    "id": "d2f89582-78c9-48b9-81a4-c6aeb2fef024",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "Hold(duration=2)",
                     "processors": "",
                     "groups": "",
                     "action": "ResetToMainMenu",
@@ -691,12 +700,12 @@
                 },
                 {
                     "name": "",
-                    "id": "9f7cf267-2709-4ba5-af8b-d52e706bfe27",
-                    "path": "<XInputController>/select",
+                    "id": "a6106857-713b-4c16-9641-428a6df900b5",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ResetToMainMenu",
+                    "action": "InGameMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -22,9 +22,9 @@ namespace UserInterface
             player.OnScoreContested += ScoreContested;
 
             player.OnConnect += OnConnect;
-            player.OnDisconnect += OnDisconnect;
+            //player.OnDisconnect += OnDisconnect;
             
-            gameObject.SetActive(false);
+            
         }
 
         private void OnConnect()
@@ -32,10 +32,10 @@ namespace UserInterface
             gameObject.SetActive(true);
         }
 
-        private void OnDisconnect()
+       /* private void OnDisconnect()
         {
             gameObject.SetActive(false);
-        }
+        }*/
         
         private void UpdateScore()
         {
@@ -43,10 +43,18 @@ namespace UserInterface
             StartCoroutine(ScoreTick(tickTime));
         }
 
+        public void UpdateScoreText()
+        {
+            score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();
+            
+        }
+
         private void ScoreContested()
         {
             StartCoroutine(ScoreContestedTick(tickTime));
         }
+
+        
 
         IEnumerator ScoreTick(float tickTime)
         {

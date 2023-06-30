@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 namespace Gameplay.Player
 {
@@ -20,6 +21,8 @@ namespace Gameplay.Player
         [SerializeField] private float groundedDistance;
 
         [SerializeField] private bool inKnockback = false;
+
+        [SerializeField] private VisualEffect knockBackEffect;
         #endregion
 
         #region Events
@@ -93,8 +96,8 @@ namespace Gameplay.Player
         /// </summary>
         public void Respawn()
         {
-            transform.position = respawnPoint.position;
-            transform.rotation = respawnPoint.rotation;
+            rigidbody.position = respawnPoint.position;
+            rigidbody.rotation = respawnPoint.rotation;
 
             OnTakeDamage?.Invoke();
 
@@ -113,7 +116,14 @@ namespace Gameplay.Player
         public void TakeDamage(Vector3 direction, Player source, float strength, float duration)
         {
             OnTakeDamage?.Invoke();
+            KnockBackEffect();
             StartCoroutine(Knockback(direction, strength, duration));
+        }
+
+        private void KnockBackEffect()
+        {
+            //VisualEffect newEffect = Instantiate(knockBackEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            knockBackEffect.SendEvent("OnPlay");
         }
 
         private IEnumerator DelayedRemovePlayer(Player player)

@@ -54,6 +54,10 @@ namespace Gameplay.Player
                 GameManager.GetInstance().GetMapManager().ResetToMainMenu();
             }
 
+            if (player.GetController().GetRespawnPlayerButton()){
+                player.Respawn();
+            }
+
             SpeedControl();
         }
 

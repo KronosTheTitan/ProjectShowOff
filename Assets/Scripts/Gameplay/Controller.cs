@@ -47,5 +47,10 @@ namespace Gameplay
         {
             return input.actions["ResetToMainMenu"].WasPerformedThisFrame();
         }
+
+        public bool GetRespawnPlayerButton()
+        {
+            return input.actions["Respawn"].WasPerformedThisFrame();
+        }
     }
 }

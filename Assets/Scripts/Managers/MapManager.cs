@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using TMPro;
+using UserInterface;
 
 namespace Managers
 {
@@ -17,7 +18,11 @@ namespace Managers
         [SerializeField] private List<ZonePoints> spawnPoints;
         [SerializeField] private List<HillPoints> hillLocations;
 
+       [SerializeField] private List<PlayerUI> playerUIs;
+        
+
         [SerializeField] private Hill hill;
+        [SerializeField] private GameObject hillObject;
         [SerializeField] private GameManager manager;
         [SerializeField] private UIManager uiManager;
 
@@ -28,7 +33,11 @@ namespace Managers
         [SerializeField] private GameObject threeWaySplitScreen;
         [SerializeField] private GameObject fourWaySplitScreen;
 
-        public float timeRemaining = 180;
+        [SerializeField] private GameObject scoresAndTimer;
+
+        [SerializeField] private GameObject tutorialScreen;
+
+        [SerializeField] private float timeRemaining;
         public bool timerIsRunning = false;
         public TextMeshProUGUI timeText;
 
@@ -41,7 +50,8 @@ namespace Managers
 
             RespawnActivePlayers();
 
-            manager.OnGameOver += GameOverScreen;
+            //manager.OnGameOver += GameOverScreen;
+            
 
         }
 
@@ -73,6 +83,7 @@ namespace Managers
             for (int i = 0; i < players.Length; i++)
             {
                 GameManager.GetInstance().GetPlayer(i).SetRespawnPoint(spawnPoints[zone].points[i].transform);
+                playerUIs[i].UpdateScoreText();
             }
             SetHillLocations(zone);
         }
@@ -94,6 +105,7 @@ namespace Managers
         public void SetHillLocations(int zone)
         {
             hill.SetHillSites(hillLocations[zone].points);
+            hill.ResetSite();
 
         }
 
@@ -102,44 +114,66 @@ namespace Managers
 
         public void InitializeMap(int zone)
         {
-            mainMenuCamera.gameObject.SetActive(false);
-            winnerCamera.gameObject.SetActive(false);
+            GameManager.GetInstance().GetScoreManager().ResetScore();
             SetPlayerSpawn(zone);
-            uiManager.UpdateSplitScreen();
-            RespawnActivePlayers();
-            timerIsRunning = true;
-            timeRemaining = 180;
             
+            
+
+            StartCoroutine(TutorialTime());
         }
 
         public void ResetToMainMenu()
         {
+            scoresAndTimer.SetActive(false);
             GameManager.GetInstance().ReplayGame();
         }
 
         private void GameOverScreen(Player winner)
         {
-            winner = GameManager.GetInstance().GetHighestScoringPlayer();
+            //winner.transform.position = podium.transform.position;
+
+            SetPlayerSpawn(5);
+            hillObject.SetActive(false);
+
+            winner.SetRespawnPoint(podium.transform);
+            
+
             winnerCamera.gameObject.SetActive(true);
-            winner.transform.position = podium.transform.position;
+            
+            scoresAndTimer.SetActive(false);
             StartCoroutine(VictoryTime());
         }
 
         IEnumerator VictoryTime()
         {
-            
-            twoWaySplitScreen.SetActive(false);
-            
-            threeWaySplitScreen.SetActive(false);
-           
-            fourWaySplitScreen.SetActive(false);
+            RespawnActivePlayers();
+            GameManager.GetInstance().gameState = GameManager.GameStates.Victory;
+            uiManager.UpdateSplitScreen();
             
             yield return new WaitForSeconds(10f);
+            hillObject.SetActive(true);
             winnerCamera.gameObject.SetActive(false);
-            SetPlayerSpawn(4);
             mainMenuCamera.gameObject.SetActive(true);
+            SetPlayerSpawn(4);
+            GameManager.GetInstance().gameState = GameManager.GameStates.MainMenu;
             RespawnActivePlayers();
+        }
+
+        IEnumerator TutorialTime()
+        {
+           
+            tutorialScreen.SetActive(true);
+            RespawnActivePlayers();
+            yield return new WaitForSeconds(9f);
+            hillObject.SetActive(true);
+            mainMenuCamera.gameObject.SetActive(false);
+            tutorialScreen.SetActive(false);
+            scoresAndTimer.SetActive(true);
+            GameManager.GetInstance().gameState = GameManager.GameStates.InMatch;
             
+            uiManager.UpdateSplitScreen();
+            timerIsRunning = true;
+            timeRemaining = 180;
         }
 
         void DisplayTime(float timeToDisplay)
@@ -151,8 +185,6 @@ namespace Managers
         }
 
     }
-
-    
 }
 
 

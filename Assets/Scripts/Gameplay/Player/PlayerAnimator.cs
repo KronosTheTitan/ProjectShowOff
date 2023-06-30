@@ -65,12 +65,19 @@ namespace Gameplay.Player
 
         private void VocalSack()
         {
-            animator.SetTrigger("vocalSack");
+            if (combat.RemainingVocalSackCooldown() < 0)
+            {
+                animator.SetTrigger("vocalSack");
+            }
         }
 
         private void Tongue()
         {
-            animator.SetTrigger("Tongue");
+           if(combat.RemainingTonguePullCooldown() < 0)
+            {
+                animator.SetTrigger("Tongue");
+            }
+            
         }
 
         private void Falling()

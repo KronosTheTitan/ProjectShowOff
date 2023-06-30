@@ -173,7 +173,7 @@ namespace Managers
             
             uiManager.UpdateSplitScreen();
             timerIsRunning = true;
-            timeRemaining = 20;
+            timeRemaining = 180;
         }
 
         void DisplayTime(float timeToDisplay)

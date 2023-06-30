@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 namespace Gameplay.Player
 {
@@ -7,12 +9,25 @@ namespace Gameplay.Player
     public class PlayerCombat : MonoBehaviour
     {
         [SerializeField] private Player player;
+
+        [SerializeField] private float lastTonguePull;
+        [SerializeField] private float lastVocalSack;
+        [SerializeField] private float tonguePullCooldownSeconds;
+        [SerializeField] private float vocalSackCooldownSeconds;
+
+        [SerializeField] private GameObject tonguePosition;
+        [SerializeField] private GameObject tongueBasePosition;
+        [SerializeField] private float tongueSpeed = 5;
+        [SerializeField] private MultiPositionConstraint tongueSettings;
+
+
         
         public delegate void CombatDelegate();
 
         public event CombatDelegate OnKick;
         public event CombatDelegate OnVocalSack;
         public event CombatDelegate OnTonguePull;
+
 
         private void Update()
         {
@@ -55,6 +70,11 @@ namespace Gameplay.Player
         /// </summary>
         public void TongueHook()
         {
+            if(RemainingTonguePullCooldown() > 0)
+                return;
+
+            lastTonguePull = Time.time;
+
             for (float x = -(horizontalArc / 2); x < horizontalArcTongue/2; x += horizontalArcTongue/horizontalRaysTongue)
             {
                 Quaternion horizontal = Quaternion.AngleAxis(x , transform.up);
@@ -76,10 +96,47 @@ namespace Gameplay.Player
 
                     damageable.TakeDamage(-(transform.position - hit.collider.transform.position), player, tongueStrength,
                         tonguePullDuration);
-                    
+
+                    //Debug.Log("Player position: " + transform.position + " hit position: " + hit.collider.transform.position + " combined: " + (gameObject.transform.position - hit.collider.transform.position));
+                    doTongueAnimation(hit.collider.transform.position);
+
                     return;
                 }
             }
+
+            doTongueAnimation(tongueBasePosition.transform.position);
+
+        }
+
+        [SerializeField] private float currentTongueTime = 1;
+
+        private void doTongueAnimation(Vector3 position)
+        {
+            tonguePosition.transform.position = position;
+            currentTongueTime = 1;
+            StartCoroutine(TongueAnimation());
+        }
+
+        private IEnumerator TongueAnimation()
+        {
+            //1 to -1 absolute do -1 absolute
+            while (currentTongueTime > -1)
+            {
+                currentTongueTime -= Time.deltaTime * tongueSpeed;
+                if (currentTongueTime <= -1)
+                {
+                    currentTongueTime = -1;
+                }
+                tongueSettings.weight = Mathf.Abs(Mathf.Abs(currentTongueTime) - 1);
+                yield return new WaitForSeconds(0.01f);
+                
+            }
+        }
+
+
+        public float RemainingTonguePullCooldown()
+        {
+            return lastTonguePull + tonguePullCooldownSeconds - Time.time;
         }
 
         [Header("Vocal Sack")]
@@ -91,8 +148,17 @@ namespace Gameplay.Player
         [SerializeField] private float vocalSackStrength = 1;
         [SerializeField] private float vocalSackKnockbackDuration = 1;
         [SerializeField] private float vocalSackWindup;
+
+        public float RemainingVocalSackCooldown()
+        {
+            return lastVocalSack + vocalSackCooldownSeconds - Time.time;
+        }
         public void VocalSack()
         {
+            if(RemainingVocalSackCooldown() > 0)
+                return;
+            lastVocalSack = Time.time;
+
             List<IDamageable> previousHits = new List<IDamageable>();
 
             for (float x = -(horizontalArc / 2); x < horizontalArc/2; x += horizontalArc/horizontalRays)

@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 4321664969273243217}
   - component: {fileID: 2025867962217857691}
   - component: {fileID: 6370216847070567989}
+  - component: {fileID: 7683485433804342895}
   m_Layer: 3
   m_Name: SM_Log1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &889030953837066740
 Transform:
@@ -106,3 +107,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1398694006081205848, guid: c24e5b0f82d1b1b4d9154484f341e01b, type: 3}
+--- !u!65 &7683485433804342895
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512751052919448398}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1243286, y: 1.3125, z: 5.9838867}
+  m_Center: {x: 0.19924927, y: -0.013549805, z: -0.11608887}

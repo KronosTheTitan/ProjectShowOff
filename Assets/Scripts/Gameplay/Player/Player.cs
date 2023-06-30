@@ -1,7 +1,10 @@
 using System.Collections;
 using Managers;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 namespace Gameplay.Player
 {
@@ -18,11 +21,14 @@ namespace Gameplay.Player
         [SerializeField] private float groundedDistance;
 
         [SerializeField] private bool inKnockback = false;
+
+        [SerializeField] private VisualEffect knockBackEffect;
         #endregion
 
         #region Events
         public delegate void PlayerDelegate();
         public event PlayerDelegate OnScoreIncrease;
+        public event PlayerDelegate OnScoreContested;
         public event PlayerDelegate OnTakeDamage;
         public event PlayerDelegate OnConnect;
         public event PlayerDelegate OnDisconnect;
@@ -37,12 +43,13 @@ namespace Gameplay.Player
             Vector3 position = transform.position;
             Vector3 direction = Vector2.down;
             float distance = groundedDistance;
-             
+
             Debug.DrawRay(position, direction, Color.green);
             Physics.Raycast(position, direction, out RaycastHit hit, distance, groundLayer);
-                 
+            
             if (hit.collider == null)
                 return false;
+            
             return true;
         }
         
@@ -62,6 +69,10 @@ namespace Gameplay.Player
         {
             OnScoreIncrease?.Invoke();
         }
+        public void InvokeOnScoreContested()
+        {
+            OnScoreContested?.Invoke();
+        }
 
         /// <summary>
         /// starts the process of removing a player from the game.
@@ -72,13 +83,21 @@ namespace Gameplay.Player
             StartCoroutine(DelayedRemovePlayer(player));
         }
 
+        
+        public void SetRespawnPoint(Transform newSpawn)
+        {
+            respawnPoint = newSpawn;
+        }
+
+
+
         /// <summary>
         /// Respawns the player at its spawn point.
         /// </summary>
         public void Respawn()
         {
-            transform.position = respawnPoint.position;
-            transform.rotation = respawnPoint.rotation;
+            rigidbody.position = respawnPoint.position;
+            rigidbody.rotation = respawnPoint.rotation;
 
             OnTakeDamage?.Invoke();
 
@@ -97,7 +116,14 @@ namespace Gameplay.Player
         public void TakeDamage(Vector3 direction, Player source, float strength, float duration)
         {
             OnTakeDamage?.Invoke();
+            KnockBackEffect();
             StartCoroutine(Knockback(direction, strength, duration));
+        }
+
+        private void KnockBackEffect()
+        {
+            //VisualEffect newEffect = Instantiate(knockBackEffect, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            knockBackEffect.SendEvent("OnPlay");
         }
 
         private IEnumerator DelayedRemovePlayer(Player player)
@@ -135,6 +161,7 @@ namespace Gameplay.Player
         {
             controller = iController;
             gameObject.SetActive(true);
+            Respawn();
             OnConnect?.Invoke();
         }
     }

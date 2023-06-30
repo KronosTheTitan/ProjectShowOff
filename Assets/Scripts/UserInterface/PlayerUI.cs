@@ -12,29 +12,70 @@ namespace UserInterface
     {
         [SerializeField] private Player player;
         [SerializeField] private TMP_Text score;
-        [SerializeField] private GameObject ScoreTickBorder;
+        [SerializeField] private RectTransform scoreTickBorder;
+        [SerializeField] private RectTransform scoreContestedBorder;
         [SerializeField] private float tickTime = 0.3f ;
 
         private void Start()
         {
             player.OnScoreIncrease += UpdateScore;
+            player.OnScoreContested += ScoreContested;
+
+            player.OnConnect += OnConnect;
+            //player.OnDisconnect += OnDisconnect;
+            
             
         }
 
+        private void OnConnect()
+        {
+            gameObject.SetActive(true);
+        }
+
+       /* private void OnDisconnect()
+        {
+            gameObject.SetActive(false);
+        }*/
+        
         private void UpdateScore()
         {
-           
             score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();
             StartCoroutine(ScoreTick(tickTime));
-            
+        }
+
+        public void UpdateScoreText()
+        {
+            score.text = GameManager.GetInstance().GetScoreManager().GetScore(player).ToString();
             
         }
+
+        private void ScoreContested()
+        {
+            StartCoroutine(ScoreContestedTick(tickTime));
+        }
+
+        
 
         IEnumerator ScoreTick(float tickTime)
         {
-            ScoreTickBorder.gameObject.SetActive(true);
+            scoreTickBorder.anchorMin = GameManager.GetInstance().GetSplitScreenManager()
+                .GetRectForPlayerIndex(GameManager.GetInstance().GetPlayerIndex(player)).min;
+            scoreTickBorder.anchorMax = GameManager.GetInstance().GetSplitScreenManager()
+                .GetRectForPlayerIndex(GameManager.GetInstance().GetPlayerIndex(player)).max;
+            scoreTickBorder.gameObject.SetActive(true);
             yield return new WaitForSeconds(tickTime);
-            ScoreTickBorder.gameObject.SetActive(false);
+            scoreTickBorder.gameObject.SetActive(false);
+        }
+
+        IEnumerator ScoreContestedTick(float tickTime)
+        {
+            scoreContestedBorder.anchorMin = GameManager.GetInstance().GetSplitScreenManager()
+                .GetRectForPlayerIndex(GameManager.GetInstance().GetPlayerIndex(player)).min;
+            scoreContestedBorder.anchorMax = GameManager.GetInstance().GetSplitScreenManager()
+                .GetRectForPlayerIndex(GameManager.GetInstance().GetPlayerIndex(player)).max;
+            scoreContestedBorder.gameObject.SetActive(true);
+            yield return new WaitForSeconds(tickTime);
+            scoreContestedBorder.gameObject.SetActive(false);
         }
     }
 }

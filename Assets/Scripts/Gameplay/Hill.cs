@@ -43,15 +43,29 @@ namespace Gameplay
 
         void HandleScore()
         {
-            if(playersOnHill.Count == 0)
+            if (playersOnHill.Count == 0)
+            {
                 return;
-            
-            if(playersOnHill.Count > MaximumPlayersOnHill)
-                return;
+            }
 
-            GameManager.GetInstance().GetScoreManager().AddScore(playersOnHill[FirstPlayerInList], scorePerTick);
-            
+            if (playersOnHill.Count == MaximumPlayersOnHill)
+            {
+                GameManager.GetInstance().GetScoreManager().AddScore(playersOnHill[FirstPlayerInList], scorePerTick);
+            }
+            else
+            {
+                foreach (Player.Player player in playersOnHill)
+                {
+                    GameManager.GetInstance().GetScoreManager().TakeEmptyTick(player);
+                }
+            }
+
             playersOnHill.Clear();
+        }
+
+        public void ResetSite()
+        {
+            lastMoveInSeconds = -60;
         }
 
         private void OnTriggerStay(Collider other)
@@ -60,6 +74,12 @@ namespace Gameplay
             if(player == null) return;
             
             playersOnHill.Add(player);
+        }
+
+        public void SetHillSites(GameObject[] hillList)
+        {
+            hillSites = hillList;
+
         }
     }
 }
